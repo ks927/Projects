@@ -1,0 +1,111 @@
+<html>
+<head>
+<title>Simple Coding Blog</title>
+
+</head>
+<body>
+    <header>
+<h1>My Simple Coding Blog</h1>
+        <datetime>December 9 2016</datetime>
+    <p>My name is Kyle Sheehan. I'm an aspring developer studying JavaScript, HTML, and CSS. In order to hold myself accountable, I've been logging my daily grind in a notebook for the past few months. I figured it was past time to convert that to something digital. Most of what you will see here is barebones, bulletpoint summaries of what I spent hours studying. I may make an effort to flesh out future posts, but for now, here is my simple coding blog. </p>
+    </header>
+
+<main>
+<h3>December 9 2016 </h3>
+    <ul>
+        <li>Created this blog!</li>
+        <li>Completed Filtered ls exercise on nodeschool.io - learned how to loop through a file directory and return a filtered list of files by their path names.</li>
+    </ul>
+    <code><pre>var fs = require('fs');
+var path = require('path');
+
+var fileDir = process.argv[2];
+var extName = '.' + process.argv[3];
+fs.readdir(fileDir, function(err, files){
+    if(err)
+        throw err;
+    files.forEach(function(file){ //loop through files
+        if(path.extname(file) === extName){
+    console.log(file); //if extname of the file is == extName, log that file.
+        }
+    });
+});
+        </pre></code>
+
+<h3>December 8 2016</h3>
+    <ul>
+        <li>Finished watching Ryan Dahl's Nodejs tutorial</li>
+        <li>Completed My First Async I/O on nodeschool.io</li>
+        <li>Researched potential bootcamps</li>
+    </ul>
+    <p>App Academy seems like the best suited for my situation being that it is in New York City, essentially free ($5000 deposit that they refund + 20% of first year's salary), and has amazing reviews due to a high job placement rate. However, it could be the most selective and difficult to get into.<br>
+    Launch Academy also sounds tempting, and searches claim they have a campus in Philadelphia which would immediately put it at the top of my list. But their site is only showing Boston and an online option right now, and $15,000 on top of relocating may not be feasible for me at the moment.<br>
+    More research and introspection needed.</p>
+
+<h3>December 7 2016</h3>
+    <ul>
+        <li>Continued reading Node.js chapter in Eloquent Javascript</li>
+        <li>Completed My First I/O (synchronous) on nodeschool.io</li>
+        <li>Began Node.js (Ryan Dahl) Youtube tutorial</li>
+        <li>Learned how to create an http server and read file synchronously and asynchronously</li>
+    </ul>
+    <code><pre>//Creating http server
+var http = require('http');
+var server = http.createServer(function(request, response){
+    response.writeHead(200, {'content-type': 'text/plain' })
+    response.write("empty\n");
+    setTimeout(function(){
+        response.end("site\n");
+    }, 2000)
+});
+server.listen(8000);</pre></code>
+
+<h3>December 6 2016</h3>
+    <ul>
+        <li>Watched ForEach function tutorials</li>
+        <code><pre>var arr = [1, 2, 3, 4];
+
+arr.forEach(function(item){
+    console.log("this is", item);
+});//this is item 1
+//this is item 2 etc.</pre></code>
+        <li>Began reading Node.js chapter in Eloquent JavaScript</li>
+        <li>Began nodeschool.io exercises -completed Hello World and Baby Steps</li>
+        <li>Read chapter 5 of HTML &amp; CSS</li>
+    </ul>
+
+
+<h3>December 5 2016</h3>
+    <ul>
+        <li>Finished reading Forms chapter in Eloquent JavaScript</li>
+        <li>watched JSON and callback tutorials</li>
+    </ul>
+
+<h3>December 2 2016</h3>
+    <ul>
+        <li>Read Chapter 4 of HTML &amp; CSS "links"
+            <ol>
+                <li>Learned how to link to other pages using relative URLs within your own site</li>
+                <li>Learned how to href to id tags within a page</li>
+            </ol>
+        </li>
+        <li>Began Forms chapter in Eloquent JavaScript</li>
+    </ul>
+
+<h3>December 1 2016</h3>
+    <ul>
+        <li>Read chapter 2 of HTML &amp; CSS "text</li>
+        <li>Read chapter 3 "lists" -learned about definition lists</li>
+        <li>Read the HTTP chapter in Eloquent JavaScript</li>
+    </ul>
+    </main>
+</body>
+
+
+
+
+
+
+
+
+</html>
