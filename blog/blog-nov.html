@@ -1,0 +1,143 @@
+<html>
+<head>
+<title>Simple Coding Blog</title>
+
+</head>
+<body>
+<h3>November 30 2016</h3>
+    <ul>
+        <li>Read chapter 1 of HTML &amp; CSS "Structure"</li>
+        <li>finished To Do List App and pushed to GitHub</li>
+        <li>Organized my GitHub repos</li>
+        <li>Began reading the Canvas chapter in Eloquent JavaScript</li>
+    </ul>
+    <code><pre>//Set up function to create li within ul and clear the input after entering text.
+function newTask(){
+    var ul = document.getElementById("list");
+    var li = document.createElement("li");
+    var inputText = document.getElementById("placeholder").value;
+li.appendChild(document.createTextNode(inputText));
+ul.appendChild(li);
+
+document.getElementById("placeholder").value = "";
+li.onclick = removeItem;
+};
+
+//Add listener for enter button on input element.
+var tasks = document.querySelector('input');
+tasks.onkeyup = function(event){
+    if(event.keyCode == 13){
+        newTask();
+    }
+};
+
+//Finally set up function to remove each task from the list.
+function removeItem(event){
+    event.target.parentElement.removeChild(event.target)
+};</pre></code>
+
+<h3>November 28 2016</h3>
+    <ul>
+        <li>Complted Hex Color Generator project and pushed to GitHub</li>
+        <code><pre>function getColor(){
+    return '#' + Math.random().toString(16).slice(2, 8);
+}
+
+function setBackground(){
+    var bgColor = getColor();
+
+    document.body.style.backgroundColor = bgColor;
+}
+
+document.body.onkeyup = function(event){
+    if(event.keyCode == 32){
+        setBackground()
+    }
+    document.body.innerHTML = getColor();
+};</pre></code>
+        <li>Began To Do List App</li>
+    </ul>
+
+<h3>November 22 2016</h3>
+    <ul>
+        <li>Completed 3/4 of Platform Game Project and pushed to GitHub</li>
+    </ul>
+
+<h3>Novmeber 21 2016</h3>
+    <ul>
+        <li>Finished Event Handling chapter and exercise in Eloquent JavaScript</li>
+        <code><pre>//program a text field that disallows Q, W, and X from being entered
+var field = document.querySelector("#turkish");
+field.addEventListener("keydown", function(event){
+    if(event.keyCode == 81 || event.keyCode == 87 || event.keyCode == 88){
+        event.preventDefault();
+    }
+});</pre></code>
+        <li>Learned how to push to GitHub from Brackets and added Eloquent JavaScript notes</li>
+    </ul>
+
+<h3>November 17 2016</h3>
+    <ul>
+        <li>Finished reading the DOM chapter in Eloquent JavaScript</li>
+        <li>Began reading Event Handling chapter</li>
+    </ul>
+
+<h3>November 16 2016</h3>
+    <ul>
+        <li>Read JavaScript and the Browser in Eloquent JavaScript</li>
+        <li>Began the DOM chapter</li>
+    </ul>
+
+<h3>November 15 2016</h3>
+    <ul>
+        <li>Finished reading the Modules chapter</li>
+        <code><pre>var month = function(){
+    var names = ["January", "February", "March", "April"];
+    return {
+    name: function(number){ return names[number]; },
+    number: function(name){ return names.indexOf(name); }
+};
+}();
+console.log(month.name(2));</pre></code>
+        <li>Watched 3 LearnCode academy Modular JavaScript videos</li>
+    </ul>
+
+<h3>November 14 2016</h3>
+    <ul>
+        <li>Refreshed myself on the Modules Eloquent JavaScript chapter</li>
+    </ul>
+
+<h3>November 10 2016</h3>
+    <ul>
+        <li>Completed Regular Expressions Chapter and exercises in Eloquent JavaScript</li>
+        <li>Began Modules Chapter</li>
+        <li><strong>Began using pen and paper to problem solve</strong></li>
+    </ul>
+
+<h3>November 9 2016</h3>
+    <ul>
+        <li>Completed Electronic Life Project</li>
+        <li>Began Regular Expressions Chapter</li>
+    </ul>
+    <p><strong>Around this time that I lost all my Brackets files</strong></p>
+
+<h3>November 8 2016</h3>
+    <ul>
+        <li>Read Objects chapter in Eloquent JavaScript and completed vector exercise</li>
+        <li>began Electronic Life Project</li>
+    </ul>
+
+<h4>I did not document much in the beginning of November as I was dealing with the high school soccer playoffs, as well as training, and working.</h4>
+
+<a href="blog-dec.html">&lt;&lt;November Posts</a><a href="blog-oct.html">>>October Posts</a>
+</body>
+
+
+
+
+
+
+
+
+
+</html>
