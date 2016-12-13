@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>Simple Coding Blog</title>
-
+<link href="blog.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
     <header>
@@ -11,6 +11,115 @@
     </header>
 
 <main>
+
+<h3>December 13 2016</h3>
+    <ul>
+        <li>Make it Modular exercise on nodeschool.io</li>
+        <code><pre>module.exports = function(){
+    var fs = require('fs');
+    var path = require('path');
+
+    var fileDir = process.argv[2];
+    var extName = '.' + process.argv[3];
+fs.readdir(fileDir, function(err, files){
+    if(err)
+        console.log("error");
+    files.forEach(function(file){ //loop through files
+        if(path.extname(file) === extName){
+    console.log(file);//if extname of the file is == extName, log that file.
+        }
+    });
+})}();</pre></code>
+        <li>Read Chapter 6 of HTML &amp; CSS "Tables"</li>
+        <table>
+            <thead>
+                <th colspan="4">Sterling JV Roster</th>
+            </thead>
+            <tr>
+                <th>Name</th>
+                <th>Number</th>
+                <th>Position</th>
+                <th>Year</th>
+            </tr>
+            <tr>
+                <td>Emma Carmody</td>
+                <td>00</td>
+                <td>GK</td>
+                <td>Freshman</td>
+            </tr>
+            <tr>
+                <td>Lindsay Naphy</td>
+                <td>9</td>
+                <td>D</td>
+                <td>Junior</td>
+            </tr>
+            <tr>
+                <td>Kat Little</td>
+                <td>21</td>
+                <td>D</td>
+                <td>Freshman</td>
+            </tr>
+            <tr>
+                <td>Scarlett Donohue</td>
+                <td>11</td>
+                <td>D</td>
+                <td>Freshman</td>
+            </tr>
+            <tr>
+                <td>Bella Santa Maria</td>
+                <td>15</td>
+                <td>MF</td>
+                <td>Freshman</td>
+            </tr>
+            <tr>
+                <td>Jen Kelly</td>
+                <td>7</td>
+                <td>F</td>
+                <td>Sophomore</td>
+            </tr>
+            <tfoot>
+                <th colspan="2">...and many more</th>
+            </tfoot>
+        </table>
+        <li>Added extensive first edits of CSS to this blog, and pushed to GitHub</li>
+
+<h3>December 12 2016</h3>
+    <ul>
+        <li>Node JS tutorial for beginners videos on the V8 engine, the global object, function expressions, modules and require(), module patterns.</li>
+        <code><pre>If this file is named module.js
+        var counter = function(arr){
+    return "There are " + arr.length + "items in the array";
+};
+
+var pop = function(arr){
+    return arr.pop();
+}
+
+var sayHi = function(name){
+    return "Hello there ", name;
+}
+
+module.exports.counter = counter;
+module.exports.pop = pop;
+module.exports.sayHi = sayHi;</pre></code>
+        <p>This is an example of a modular pattern. In order to access these functions outside of the module, you need to use module.exports and then call its file using require. </p>
+        <code><pre>And this file is named app.js
+        var stuff = require("./module");
+
+console.log(stuff.counter(["tea", "mug", "pizza", 7]));
+console.log(stuff.pop(["tea", "mug", {}]));
+console.log(stuff.sayHi("Gandalf"));</pre></code>
+        <p>When you run $ node app.js, There are 4items in the array,
+{},
+Gandalf gets logged.</p>
+    </ul>
+
+<h3>December 10 2016</h3
+    <ul>
+        <li>Created a link to November page on the blog.</li>
+        <li>Completed the November page.</li>
+    </ul>
+
 <h3>December 9 2016 </h3>
     <ul>
         <li>Created this blog!</li>
@@ -71,7 +180,7 @@ arr.forEach(function(item){
 //this is item 2 etc.</pre></code>
         <li>Began reading Node.js chapter in Eloquent JavaScript</li>
         <li>Began nodeschool.io exercises -completed Hello World and Baby Steps</li>
-        <li>Read chapter 5 of HTML &amp; CSS</li>
+        <li>Read chapter 5 of HTML &amp; CSS "images"</li>
     </ul>
 
 
@@ -100,7 +209,7 @@ arr.forEach(function(item){
     </ul>
     </main>
 
-    <a href="blog-nov.html">>>November posts</a>
+    <a href="blog-nov.html" class="next">November posts>></a>
 </body>
 
 

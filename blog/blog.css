@@ -1,0 +1,38 @@
+
+body {
+    font-family: sans-serif, Verdana, Arial;
+}
+
+datetime {
+    color:  #afafcf;
+}
+
+pre {
+    background-color: #e0e0eb;
+    display: block;
+    font-family: monospace;
+    white-space: pre;
+    margin: 1em 0px 1em;
+    padding: 5px;
+    border-radius: 2px;
+    width: 600px;
+    overflow: scroll;
+}
+
+h1, h3 {
+    color: #45456e;
+    letter-spacing: 0.015em;
+}
+
+.next, .last {
+    text-decoration: none;
+    color: #568f56;
+    padding-bottom: 10px;
+}
+
+.next {
+    float: right;
+}
+a:hover {
+    color: burlywood;
+}

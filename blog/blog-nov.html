@@ -1,6 +1,7 @@
 <html>
 <head>
 <title>Simple Coding Blog</title>
+<link href="blog.css" type="text/css" rel="stylesheet" />
 
 </head>
 <body>
@@ -8,10 +9,7 @@
     <ul>
         <li>Read chapter 1 of HTML &amp; CSS "Structure"</li>
         <li>finished To Do List App and pushed to GitHub</li>
-        <li>Organized my GitHub repos</li>
-        <li>Began reading the Canvas chapter in Eloquent JavaScript</li>
-    </ul>
-    <code><pre>//Set up function to create li within ul and clear the input after entering text.
+        <code><pre>//Set up function to create li within ul and clear the input after entering text.
 function newTask(){
     var ul = document.getElementById("list");
     var li = document.createElement("li");
@@ -36,9 +34,13 @@ function removeItem(event){
     event.target.parentElement.removeChild(event.target)
 };</pre></code>
 
+        <li>Organized my GitHub repos</li>
+        <li>Began reading the Canvas chapter in Eloquent JavaScript</li>
+    </ul>
+
 <h3>November 28 2016</h3>
     <ul>
-        <li>Complted Hex Color Generator project and pushed to GitHub</li>
+        <li>Completed Hex Color Generator project and pushed to GitHub</li>
         <code><pre>function getColor(){
     return '#' + Math.random().toString(16).slice(2, 8);
 }
@@ -129,7 +131,7 @@ console.log(month.name(2));</pre></code>
 
 <h4>I did not document much in the beginning of November as I was dealing with the high school soccer playoffs, as well as training, and working.</h4>
 
-<a href="blog-dec.html">&lt;&lt;November Posts</a><a href="blog-oct.html">>>October Posts</a>
+<a href="blog-dec.html" class="last">&lt;&lt;December Posts</a><a href="blog-oct.html" class="next">October Posts>></a>
 </body>
 
 
