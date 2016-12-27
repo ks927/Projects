@@ -5,12 +5,103 @@
 </head>
 <body>
     <header>
-<h1>My Simple Coding Blog</h1>
+<h1 id="top">My Simple Coding Blog</h1>
         <datetime>December 9 2016</datetime>
-    <p>My name is Kyle Sheehan. I'm an aspring developer studying JavaScript, HTML, and CSS. In order to hold myself accountable, I've been logging my daily grind in a notebook for the past few months. I figured it was past time to convert that to something digital. Most of what you will see here is barebones, bulletpoint summaries of what I spent hours studying. I may make an effort to flesh out future posts, but for now, here is my simple coding blog. </p>
+    <p>My name is Kyle Sheehan. I'm an aspring developer studying JavaScript, HTML, and CSS. I know that the best way to get better at something is to do it on a regular basis. So in order to hold myself accountable, I've been logging my daily grind in a notebook for the past few months. I figured it was past time to convert that to something digital. Most of what you will see here is barebones, bulletpoint summaries of what I spent hours studying. I may make an effort to flesh out future posts, but for now, here is my simple coding blog. </p>
     </header>
 
 <main>
+
+<h3>December 27 2016</h3>
+    <ul>
+        <li><a href="https://www.youtube.com/watch?v=xcEti6pf-To">Youtube videos</a> on bootcamps by a guy at DevMountain and his experience</li>
+    </ul>
+
+<h3>December 26 2016</h3>
+    <ul>
+        <li>Began reading about <a href="https://addyosmani.com/resources/essentialjsdesignpatterns/book/#constructorpatternjavascript">design patterns.</a> Specifically, the constructor pattern and the module pattern</li>
+        <li>Added <a href="blog-oct.html#oop">OOP code</a> to the October page</li>
+    </ul>
+
+
+<h3>December 21-25 2016</h3>
+    <p>The week leading up to Christmas was difficult to maintain a strict studying and documenting schedule. I had shopping to do, went to an Eagles tailgate, and visited New York City in the days leading up to Christmas Eve. In no orderly manner I read a variety of blog posts and chapters in books, as well as worked on this site.</p>
+    <ul>
+        <li>Read about <a href="https://www.html5rocks.com/en/tutorials/offline/whats-offline/">online-offline apps.</a></li>
+        <li>Read another blog post about the <a href="http://blog.carbonfive.com/2013/10/27/the-javascript-event-loop-explained/">event loop.</a></li>
+        <li>Watched a <a href="https://vimeo.com/163113209">video</a> on timing attacks and how users or clients can attack each other using timers</li>
+    </ul>
+    <p>I began again to reference the 13 week <a href="https://medium.com/@___aerox___/the-beginning-of-an-adventure-13-weeks-of-javascript-78107605d533#.q3kgqnmj1"> JavaScript journey</a> that began my path in August</p>
+
+<h3>December 20 2016</h3>
+    <ul>
+        <li>Learned about the Event Loop by watching "Philip Roberts: what the heck is the Event Loop anyway?"</li>
+            <figure>
+            <img src="event-loop.png" alt="event loop" />
+            <figcaption>"Hi" gets logged to the console first. The setTimeout timer gets pushed to the stack, then set aside to the webapis stack. Next, "JSConfEU" is logged. After 5 seconds, the webapis stack sends the timer to the task queue, where because it is the first thing in line, the event loop pushes it to the call stack where it can be called. Finally, after the 5 seconds has passed, "there" is logged to the console.</figcaption>
+            </figure>
+        <li>Read Chapter 2: Fundamentals - in <i>Developing Backbone.js Applications</i> - how the MVC design pattern is implemented in Backbone and other JS frameworks</li>
+        <ul>
+            <li>Model - Holds the data.</li>
+            <li>View - This is what is presented to the client. The UI. </li>
+            <li>Controller - The events that change the View. The controller processes requests from the browser, asks model for data, and then supplies this data to views.</li>
+        </ul>
+    </ul>
+
+<h3>December 19 2016</h3>
+    <ul>
+        <li>Completed October page on blog</li>
+        <li>Learned about github-pages</li>
+    </ul>
+
+<h3>December 15 2016</h3>
+    <ul>
+        <li>Completed learnyounode exercise HTTP client</li>
+        <code><pre>//HTTP Client
+var args = process.argv[2];
+var http = require('http');
+
+http.get(args, function(response){
+    response.setEncoding("utf8");//encodes the response data to a string
+    response.on("data", console.log(data));//listens to the response, logs the data to the console
+    response.on("error", console.error(error));//listens to the response, handles any error
+    }).on('error', console.error);//listens to the http.get, handles any error</pre></code>
+        <li>Learned about streams and buffers, and how to read and write streams.</li>
+        <ul>
+            <li>Reading Streams -similar to fs.readFile but breaks up the data into chunks and allows the client to get the data as the server is still reading it. Instead of waiting for the entire file to be loaded.</li>
+        <code><pre>
+var fs = require('fs');
+
+var myReadStream = fs.createReadStream(__dirname + '/nflteams.JSON', 'utf8')
+
+myReadStream.on('data', function(chunk){
+    console.log('chunk received');
+});
+</pre></code>
+            <li>Writing Streams -creates a new file in that directory with the original file's contents.</li>
+            <code><pre>var fs = require('fs');
+
+var myReadStream = fs.createReadStream(__dirname + '/nflteams.JSON', 'utf8');
+var myWriteStream = fs.createWriteStream(__dirname + '/newteamfile.JSON');
+
+myReadStream.on('data', function(chunk){
+    console.log('chunk received');
+    myWriteStream.write(chunk);
+});</pre></code>
+        </ul>
+    </ul>
+
+<h3>December 14 2016</h3>
+    <ul>
+        <li>Researched web developers' portfolios and blogs</li>
+        <li>Worked on this blog</li>
+            <ul>
+                <li>Updated the intro paragraph</li>
+                <li>Added an October page</li>
+                <li>Added headers to each page</li>
+                <li>Added some CSS</li>
+            </ul>
+    </ul>
 
 <h3>December 13 2016</h3>
     <ul>
@@ -82,6 +173,12 @@ fs.readdir(fileDir, function(err, files){
             </tfoot>
         </table>
         <li>Added extensive first edits of CSS to this blog, and pushed to GitHub</li>
+            <ul>
+                <li>
+                    Including adding width to coding sections and an <a href="blog-nov.html#overflow">overflow scroll</a>
+                </li>
+            </ul>
+    </ul>
 
 <h3>December 12 2016</h3>
     <ul>
@@ -195,7 +292,7 @@ arr.forEach(function(item){
         <li>Read Chapter 4 of HTML &amp; CSS "links"
             <ol>
                 <li>Learned how to link to other pages using relative URLs within your own site</li>
-                <li>Learned how to href to id tags within a page</li>
+                <li>Learned how to href to id tags within a page <a href="#top">return to top</a></li>
             </ol>
         </li>
         <li>Began Forms chapter in Eloquent JavaScript</li>
@@ -208,8 +305,9 @@ arr.forEach(function(item){
         <li>Read the HTTP chapter in Eloquent JavaScript</li>
     </ul>
     </main>
-
+<footer>
     <a href="blog-nov.html" class="next">November posts>></a>
+    </footer>
 </body>
 
 
