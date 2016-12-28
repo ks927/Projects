@@ -3,8 +3,37 @@ body {
     font-family: sans-serif, Verdana, Arial;
 }
 
-datetime {
-    color:  #afafcf;
+#title {
+    text-align: center;
+    font-size: 3.5em;
+    margin-top: 25%;
+}
+
+#caption {
+    text-align: center;
+    letter-spacing: 1%;
+    line-height: 1.5em;
+}
+
+#links {
+    padding: 1em;
+}
+
+#links a {
+    padding-bottom: 0;
+    text-decoration: none;
+    border-bottom: 1px dashed #f47fb5;
+    color: #997c90;
+}
+
+#links a:hover {
+    background: #f47fb5;
+    color: #fff;
+}
+
+#links li {
+    margin-bottom: -0.75em;
+    list-style: none;
 }
 
 header {
@@ -34,6 +63,14 @@ pre {
 h1, h3 {
     color: #45456e;
     letter-spacing: 0.015em;
+}
+
+h1 a {
+    text-decoration: none;
+}
+
+h1 a:hover{
+    color: #45456e;
 }
 
 h3 {
