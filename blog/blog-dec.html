@@ -10,9 +10,24 @@
 
 <main>
 
+<h3>December 29 2016</h3>
+    <ul>
+        <li>Created first draft of navigation from index page</li>
+    </ul>
+
 <h3>December 28 2016</h3>
     <ul>
-        <li></li>
+        <li>Created GitHub repo to set up weekly learning goals</li>
+        <li>Added index page to blog</li>
+        <li>Learned how pipes can be used to stream data, serve HTML, and serve JSON to a webpage using node</li>
+        <code><pre>var http = require('http');
+var server = http.createServer(function(request, response){
+    console.log("server was created");
+    response.writeHead(200, {'content-type': 'text/html' })
+    var myReadStream = fs.createReadStream(__dirname + '/node.html', 'utf8');// /node.html being filename of the site you want to upload
+    myReadStream.pipe(response);//sends the data straight to the user
+});
+server.listen(8000);</pre></code>
     </ul>
 
 <h3>December 27 2016</h3>
