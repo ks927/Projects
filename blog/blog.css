@@ -3,15 +3,16 @@ body {
     font-family: sans-serif, Verdana, Arial;
 }
 
-navbar ul{
+nav ul{
+    list-style-type: none;
     position: absolute;
-    margin: 1;
+    margin: 0;
     padding: 0;
     top: 0;
     right: 0;
 }
 
-navbar li {
+nav li {
     display: inline;
     padding: 5%;
     border-right: 1px solid black;
@@ -20,7 +21,7 @@ navbar li {
 
 
 
-navbar li:hover {
+nav li:hover {
     background: #45456e;
     color: #fff;
 }
@@ -122,6 +123,7 @@ main a {
     color: #997c90;
 }
 
-a:hover {
-    text-decoration: underline;
+main a:hover {
+    border-bottom: 1px dashed #997c90;
+    padding-bottom: 0px;
 }
