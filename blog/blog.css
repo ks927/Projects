@@ -24,6 +24,7 @@ nav li {
 nav li:hover {
     background: #45456e;
     color: #fff;
+    transition: 1.5s ease;
 }
 
 #title {
@@ -49,7 +50,8 @@ nav li:hover {
 }
 
 #links a:hover {
-    text-decoration: underline;
+    transition: underline 1s ease;
+
 }
 
 #links li {
@@ -67,7 +69,6 @@ main {
     width: 90%;
     margin: auto;
 }
-
 
 pre {
     background-color: #e0e0eb;
@@ -97,6 +98,7 @@ h3 {
     border-bottom: solid 1px #d9d9d9;
 }
 
+
 img {
     height: 300px;
     width: 500px;
@@ -108,22 +110,19 @@ figcaption {
     font-size: .85em;
 }
 
-.next, .last {
-    text-decoration: underline;
-    color: #568f56;
-    padding-bottom: 10px;
-}
 
 .next {
     float: right;
 }
 
-main a {
+a {
     text-decoration: none;
     color: #997c90;
+    transition: ease-in 0.2s;
 }
 
-main a:hover {
+a:hover {
     border-bottom: 1px dashed #997c90;
     padding-bottom: 0px;
+    color: #000099;
 }

@@ -1,0 +1,103 @@
+<html>
+<head>
+<title>Daily Coding Blog</title>
+<link href="blog.css" type="text/css" rel="stylesheet" />
+
+</head>
+<body>
+    <header>
+        <h1 id="top"> <a href="blog-index.html"> My Daily Coding Blog</a></h1>
+    </header>
+
+<main>
+<h3>January 4 2017</h3>
+    <ul>
+        <li>Created the January page and changed the a:hover effects</li>
+        <li>Read about and practiced the module design pattern</li>
+        <code><pre>//Module Pattern
+var cartModule = (function () {
+    //privates
+    var cart = [];
+
+    return {
+    //return object exposed to the public
+    addItem: function(items) {
+        cart.push(items);
+    },
+    countItem: function() {
+        return cart.length;
+    }
+
+  };
+})();
+cartModule.addItem("bread");
+cartModule.addItem("soap");
+cartModule.addItem("beer");
+console.log(cartModule.countItem());//3
+console.log(cartModule.cart)//undefined because it's private
+</pre></code>
+        <li>And the Revealing module pattern</li>
+        <code><pre>//The Revealing Module Pattern
+var fellowship = (function() {
+
+    var quest = "adventure";
+
+    var members = function(mems){
+        return " " + mems + " are going on the " + quest;
+    }
+
+    return {
+
+        setMembers: members,
+        setQuest: quest
+
+    };
+})();
+
+console.log(fellowship.setMembers("The fellowship"));//The fellowship are going on the adventure</pre></code>
+    </ul>
+
+
+<h3>January 3 2017</h3>
+    <ul>
+        <li>Created folder on Weekly-Goals repository to store past weeks' goals/performance, and updated the Readme for the current week</li>
+        <li>Continued watching <a href=https://www.youtube.com/watch?v=BBOUfdUZIVo&index=17&list=PL4cUxeGkcC9gcy9lrvMJ75z9maRw4byYp>Node JS Tutorial for Beginners</a></li>
+            <ul>
+                <li>Learned basic routing</li>
+                <li>Installed nodemon</li>
+                <li>Learned how to use express, and how much easier it is to route than using conditionals</li>
+        </ul>
+        <code><pre>//Basic Routing
+var http = require('http');
+var fs = require('fs');
+
+var server = http.createServer(function(request, response){
+    console.log("server was created" + request.url);
+
+    if(request.url === '/home' || request.url === '/'){
+    response.writeHead(200, {'content-type': 'text/html' });
+    fs.createReadStream(__dirname + '/node.html').pipe(response);
+    } else if(request.url === '/dec'){
+    response.writeHead(200, {'content-type': 'text/html' });
+    fs.createReadStream(__dirname + '/node-december.html').pipe(response);
+    } else if(request.url === '/api/nfl'){
+        var dolphins = [{name: "Miami Dolphins", conference: "AFC", division: "East", city: "Miami Gardens"}];
+        response.writeHead(200, {'content-type': 'application/json'});
+        response.end(JSON.stringify(dolphins));
+    }
+    else {
+    response.writeHead(200, {'content-type': 'text/html' });
+    fs.createReadStream(__dirname + '/node-404.html').pipe(response);
+    }
+});
+
+server.listen(8000);
+console.log("listening to localhost 8000");</pre></code>
+    </ul>
+
+    <footer>
+    <a href="blog-dec.html" class="next">December posts>></a>
+    </footer>
+    </main>
+    </body>
+</html>
