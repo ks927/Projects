@@ -52,7 +52,7 @@ nav li {
 }
 
 
-nav li:hover {
+nav li:hover a {
     background: #45456e;
     color: #fff;
     transition: 1.5s ease;
