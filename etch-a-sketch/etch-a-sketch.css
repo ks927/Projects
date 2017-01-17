@@ -1,0 +1,39 @@
+#container {
+           height: 500px;
+           width: 500px;
+           margin: 0 auto;
+           outline: 1px solid black;
+       }
+       
+#container div {
+           display: inline-block;
+           float: left;
+           
+       }
+
+.outline {
+    outline: 1px solid grey;
+}
+
+#buttons {
+    text-align: center;
+    margin: 15px;
+}
+
+
+.clear {
+    display: inline;
+    height: 45px;
+    width: 150x;
+    border: 1px solid #666;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: medium;
+    font-family: monospace;
+    margin: 15px;
+}
+
+.clear:hover {
+    background-color: #666;
+    color: #fff;
+}

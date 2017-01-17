@@ -1,48 +1,52 @@
 //Generate grid
 function generateGrid(){
-    var container = 500;
-    var squares = 20;
     
-    for(var i=0; i < squares * squares; i++){
+    for(var i=0; i < size*size; i++){
         $('#container').append('<div class="grid"></div>');
 }
-    console.log($("div.grid").length + " divs generated")
-    
-    //stylize container
-    $('#container').css({
-    'width': container,
-    'height': container,
-    'margin': 'auto',
-    'outline': '1px solid black',               
-                       })
-    console.log($("#container").width())
     
     //stylize grid
     $(".grid").css({
-        'width': container / squares,
-        'height': container / squares,
-        'float': 'left',
-        'display': 'inline-block'
+        'width': '500' / size,
+        'height': '500' / size,
                    })
 };
- generateGrid();
 
-//Create hover effect
-$(document).ready(function(){
-    
-$(".grid").hover(function(){
+
+    //Create hover effect
+    function hover(){
+    $(".grid").hover(function(){
     $(this).css({'background-color': '#666'});
 })
+}
+
+//Handle buttons and call functions
+$(document).ready(function(){
+
+    size = 20;    
+    
+    generateGrid();    
+    
+    hover();
 
 //on 'clear' click, .grids return to original state
 $('input[name="clear"]').on('click', function(){
-    $(".grid").css({'background-color': '#fff'});
+    $('.grid').css({'background-color': '#FFF'});
 })
 
+//
 $('input[name="adjust"]').on('click', function(){
-  var size = prompt("How many squares would you like the grid?", 20);
-  
+    size = prompt("How many squares would you likthe grid?", 20);
+    
+    $('#container').empty();
+    generateGrid(size);
+    console.log($("div.grid").length + " divs generated");
+    hover();
 })
 
+//Toggle grid outline
+$('input[name="toggle"]').on('click', function(){
+$('.grid').toggleClass("outline");
+})
 
 });
