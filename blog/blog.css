@@ -31,32 +31,19 @@ footer {
     margin-bottom:
 }
 
-nav {
-    display: flex;
-}
-
 nav ul {
     list-style-type: none;
     position: absolute;
-    height: 60px;
-    padding: 0;
+    height: 30px;
     top: 0;
-    right: 25;
+    right: 10px;
 }
 
 nav li {
     display: inline;
-    padding-right: 5px;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
+    padding-right: 30px;
 }
 
-
-nav li:hover a {
-    background: #45456e;
-    color: #fff;
-    transition: 1.5s ease;
-}
 
 .container {
     position: absolute;
@@ -68,20 +55,18 @@ nav li:hover a {
     max-height:
 }
 
-#title {
-
-}
-
 #caption {
     text-align: center;
     letter-spacing: 1%;
     line-height: 1.5em;
 }
 
-#links ul {
-    padding: 1em;
-    margin-top: 50%;
+#links {
+    width: 300px;
+    height: 200px;
+    margin-top: 400px;
 }
+
 
 #links a {
     text-decoration: none;
