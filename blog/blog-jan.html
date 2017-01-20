@@ -13,6 +13,57 @@
 
 <main>
 
+<h3>January 19 2017</h3>
+    <ul>
+        <li>Read chapters 4 through 10 of Learn to Program and completed exercises</li>
+        <pre><code>class OrangeTree
+
+    def initialize
+        @age = 0
+        @orangeCount = 0
+        @height = 0
+        puts "An orange tree is planted."
+    end
+
+    def height
+        puts "Tree is " + @height.to_s + " feet tall."
+    end
+
+    def oneYearPasses
+        puts "One year passes"
+        @age = @age + 1
+        @height = @height + 10
+
+        if @age >= 3
+            @orangeCount = @orangeCount + 1
+        end
+    end
+
+    def countTheOranges
+       puts "The tree has " + @orangeCount.to_s + " oranges!"
+    end
+
+    def pickAnOrange
+        if @orangeCount > 0
+        @orangeCount = @orangeCount - 1
+        puts "What a delicious orange!"
+            else
+            puts "There are no oranges to pick this year"
+        end
+    end
+end
+
+tree = OrangeTree.new
+tree.oneYearPasses
+tree.oneYearPasses
+tree.oneYearPasses
+tree.oneYearPasses
+tree.height
+tree.countTheOranges
+tree.pickAnOrange
+</code></pre>
+    </ul>
+
 <h3>January 18 2017</h3>
     <ul>
         <li>Finished entire Ruby track on codecademy</li>
