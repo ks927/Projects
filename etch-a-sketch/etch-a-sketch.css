@@ -8,7 +8,7 @@
 #container div {
            display: inline-block;
            float: left;
-
+           cursor: cell;
        }
 
 .outline {
