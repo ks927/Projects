@@ -36,7 +36,7 @@ $('input[name="clear"]').on('click', function(){
 
 //
 $('input[name="adjust"]').on('click', function(){
-    size = prompt("How many squares would you likthe grid?", 20);
+    size = prompt("How many squares would you like the grid?", 20);
     
     $('#container').empty();
     generateGrid(size);
