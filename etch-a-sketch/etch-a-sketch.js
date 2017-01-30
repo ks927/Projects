@@ -36,8 +36,13 @@ $('input[name="clear"]').on('click', function(){
 
 //
 $('input[name="adjust"]').on('click', function(){
+<<<<<<< HEAD
     size = prompt("How many squares would you likthe grid?", 20);
 
+=======
+    size = prompt("How many squares would you like the grid?", 20);
+
+>>>>>>> origin/master
     $('#container').empty();
     generateGrid(size);
     console.log($("div.grid").length + " divs generated");
