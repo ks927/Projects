@@ -1,0 +1,4 @@
+o:	Game:@game_overF:@guessesi
+:@correct_guesses[
+I"a:ETI"i;	TI"o;	TI"l;	TI"m;	T:@incorrect_guesses[
+I"e;	TI"u;	TI"c;	TI"n;	TI"	save;	T:@secret_wordI"improbably;	T:@lettersI"7["i", "m", "p", "r", "o", "b", "a", "b", "l", "y"];	T:@guess@
