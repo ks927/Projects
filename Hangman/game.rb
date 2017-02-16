@@ -3,6 +3,8 @@ class Game
     def initialize 
         @game_over = false
         @guesses = 10
+        @correct_guesses = []
+        @incorrect_guesses = []
         generate_word
     end
     
@@ -19,26 +21,32 @@ class Game
     end
 
     def play
-        while @game_over == false            
+        until @game_over == true
             # prompt user for guesses
-            print "Guess a letter"
+            print "Guess a letter "
             @guess = gets.chomp.downcase
             if @letters.include?@guess
+                @correct_guesses << @guess
                 puts "You got one!"
+                check_end_game
             else
                 puts "Nice try but guess again!"
+                @incorrect_guesses << @guess
                 @guesses = @guesses -= 1
                 check_end_game
             end
         end
-        
     end
     
     def check_end_game
         if @guesses == 0
-            game_over = true
-            print "Game over you lose!"
+            @game_over = true
+            print "Game over, you lose!"
             puts "The secret word was #{@secret_word}!"
+        elsif @correct_guesses == @secret_word  
+                @game_over = true
+                print "You win!"
+                puts "The secret word is #{@secret_word}"
         end
         
     end
