@@ -13,6 +13,22 @@
 
 <main>
 
+<h3>The Odin Project Blog Post 6</h3>
+    <datetime>February 17 2017</datetime>
+    <br>
+    <h4>Week 6 - Files and I/O and Hangman</h4>
+
+<p>I was ready to give up before I even started the project this week. It seemed like a mountain that was too steep and too high for me to climb, and I just wanted to move onto the next section before even attempting it. Alas, I figured I could at least practice what we learned in the lesson to load the dictionary into my script, so I started there. From there I figured I might as well iterate over the dictionary and find the words that were between five and seven characters long. It was at this point that I realized two things.</p>
+<ol>
+    <li>I’m starting to break problems down like a programmer</li>
+    <li>This game is going to take an OOP approach</li>
+    </ol>
+<p>The first revelation is something that I think (hope) will play an integral role in my development as a developer. When you are given a large assignment, it is important not to be overwhelmed by the big picture or how vast the final structure of the code might look in your head. Up to this point, I have struggled with this feeling. I’d envision the final project and end up staring at a blank screen for an hour in agony. One of the principals of programming is to break the code into its smallest possible step and start from there. In my case, I wasn’t even intending to continue after my first step, but the project became more manageable after it was broken down. Now I see the value in this process.</p>
+
+<p>Second, on a more narrow scope, I discovered that I would need to make a Game class and take an OOP approach towards this project. Using my strategy from the tic tac toe game, I sort of worked backwards again, imagining how the user might interact to play my hangman game. It begins with the command line asking for a user input. Depending on the response, a method within the class is run. The nucleus of the Game is the play loop, which interacts with the user, checking his/her guess, and showing what letters the user has guessed right or wrong. Also similar to my tic tac toe creation is the way in which I check if the game is over. I set up a method that sets the game_over instance variable to true if the game is won, lost, or saved.</p>
+
+<p>The difference between my hangman and tic tac toe games lies in the ability to save and load hangman files. In fact that’s what this section of TOP’s curriculum was on and the point of the project. Thus, in order to save the game, I created a method that asks the user to name the game he/she is playing, writes a file with that name to the saved directory, and utilizes the marshal library to serialize and dump the game file into the saved directory. The load method basically does the same thing in reverse. It asks the user for the name of the game file, finds it in the saved directory, and deserializes it.</p>
+
 <h3>February 16 2017</h3>
     <ul>
         <li>Completed Hangman project <a href="https://github.com/ks927/Projects/tree/master/Hangman">GitHub</a></li>
