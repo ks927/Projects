@@ -4,6 +4,8 @@ This is a command line, hangman game using object oriented programming in the Ru
 
 The program was built as part of The Odin Project curriculum to incorporate working with the I/O of files and serialization in addition to building upon the OOP lesson.
 
+![screenshot](https://cloud.githubusercontent.com/assets/23216543/23180147/6a015cbe-f83e-11e6-96bf-3035997e41dd.png)
+
 ### Written in Ruby 
 
 ### Objected Oriented Programming
@@ -14,4 +16,3 @@ The program was built as part of The Odin Project curriculum to incorporate work
 
 ### Control Flow
 
-![screenshot](https://cloud.githubusercontent.com/assets/23216543/23180147/6a015cbe-f83e-11e6-96bf-3035997e41dd.png)
