@@ -15,4 +15,7 @@ The program was built as part of The Odin Project curriculum to incorporate work
 ### Serialization
 
 ### Control Flow
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
