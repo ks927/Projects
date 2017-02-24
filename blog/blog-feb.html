@@ -13,6 +13,127 @@
 
 <main>
 
+<h3>The Odin Project Blog Post 6</h3>
+    <datetime>February 24 2017</datetime>
+    <br>
+    <h4>Week 7 - Creating a Web Server and Client</h4>
+
+<p>While each project has challenged me in its own way, this week’s Ruby on the Web assignment was a true test of my patience. I don’t know if it’s something that I’m just not getting, or if working with HTTP and servers really is that tricky, but this stuff just doesn’t seem to make the connection in my brain that everything else does. Even before I began TOP, when I studied Node.js I struggled with it compared to the regular browser JavaScript. Therefore, I wanted to use this week’s lesson to strengthen my deficiency. Sadly there wasn’t a whole lot of material before we were sent off to begin the project. So I would need to learn by trial and error…and mostly by studying other students’ code.</p>
+
+<p>I'm going to break this project down as simply as possible; going chunk of code by chunk of code...</p>
+
+<code><pre> SERVER...
+require 'socket'
+require 'json'
+
+server = TCPServer.open(8000) # Socket to listen on port 8000
+loop { #Servers run forever
+  client = server.accept  # Wait for a client to connect
+  header = ""
+  while line = client.gets # read lines from client
+    header += line
+    break if header =~ /\r\n\r\n$/ # breaks at end of initial request line
+  end
+</pre></code>
+<p>First we open a socket on the port # of our choice, and wait for a client(or browser) to connect to that socket. Sockets are connections are between servers and clients that allow data to stream through them. Next we begin a loop because we want the server to run forever. This next sequence is the most confusing part. First, we call the server object's 'accept' instance method and store it in a variable called client. The while loops gets(or reads) each line from the client until it finds a double CRLF, then stops. This is important because that is how HTTP transactions are ended.</p>
+<code><pre> BROWSER...
+require 'socket'
+require 'json'
+
+host = 'localhost'     # The web server
+port = 8000            # Default HTTP port
+path = "index.html"   # The file we want
+post_path = "thanks.html"</pre></code>
+<p>Similarly to the server, on the client-side we begin by requiring the socket library. We'll get to the json library later. Next, we declare our variables. The host will be local, the port will be the same as the server, and the paths will be linked up later on.</p>
+
+<code><pre>SERVER...
+ puts "Request: #{header}"
+    method = header.split # split headers
+    content_length = header.split.last.to_i # split headers and retrieve last one
+    viking_hash = client.read(content_length) # store hash in variable
+    if method[0] == "POST" # if first elem is POST
+        path = method[1].to_s # second elem is path
+        if File.exist?(path)
+            params = JSON.parse(viking_hash) # parse the hash
+            new_yield = "<li>Name: #{params['viking']['name']}</li><li>Email: #{params['viking']['email']}</li>"
+            file = File.read(path) # open that file
+            body = file.gsub('<%= yield %>', new_yield) # sub parsed hash in body
+            client.print "HTTP/1.0 200 OK\r\n" +
+                         "Content-Type: text/html\r\n" +
+                         "Content-Length: #{body.bytesize}" +
+                         "Connection: close\r\n"
+            client.print body # print the body
+        end
+</pre></code>
+<p>Next up on the server, we puts the header request that was made by the client. The first request we are going to deal with is a POST request. We split the header, retrieve the last element which contains our hash with the json, and store it in a variable. Conditionals will tell us if the request made from the client is a POST request, and if the path with that POST request has an existing file. If they are both true, we use json to parse our hash, read that file, and replace the yield statement from the file with our parsed hash. Finally, we print our HTTP transaction headers.</p>
+
+<code><pre>BROWSER...
+puts "Would you like to GET or POST ?"
+choice = gets.chomp
+
+elsif choice == "POST"
+    puts "What would you like your Viking name to be?"
+    name = gets.chomp
+    puts "What would you like your Viking email to be?"
+    email = gets.chomp
+    hash = {:viking => {:name=>name, :email=>email} }
+    info = hash.to_json
+    message = "POST #{post_path} HTTP/1.0\r\n" +
+             "From: blah@yahoo.com\r\n" +
+             "User-Agent: HTTPTool/1.0\r\n" +
+             "Content-Type: application/x-www-form-urlencoded\r\n" +
+             "Content-Length: #{info.size}\r\n\r\n" +
+             "#{info}\r\n"
+    socket = TCPSocket.open(host,port)
+    socket.print(message)
+    response = socket.read
+    headers,body = response.split("\r\n\r\n", 2)
+    print headers
+    print body                          # And display it
+end
+</pre></code>
+<p>This is a little out of order to match up with the server. Nonetheless, when we run the browser in the terminal, it presents us with a choice which will be stored in a variable. If our choice is "POST", we are given more choices which are stored in a hash. This should sound familiar. Then, we create our headers to send to the server. After all of that, we open our socket with the host and port that we declared in the first step so that we can connect to the server that we created. </p>
+
+<code><pre>SERVER...
+elsif method[0] == "GET" # 1st element = GET
+        path = method[1].to_s
+        if File.exist?(path) # if 2nd elem = our file
+            file = File.read(path) # open that file
+            client.print "HTTP/1.0 200 OK\r\n" +
+                    "Content-Type: text/html\r\n" +
+                    "Content-Length: #{file.size}\r\n" +
+                    "Connection: close\r\n\r\n"
+            client.print file
+        else
+            message = "File not found"
+            client.print "HTTP/1.1 404 Not Found\r\n" +
+                         "Content-Length: #{message.size}\r\n" +
+                         "Connection: close\r\n\r\n"
+            client.print message
+        end
+    end
+    client.close
+}
+</pre></code>
+<p>The rest is pretty straightforward when compared to the beginning. We have the same code as before, but now just looking for a GET request and existing path within that request. The only difference here is if there is no file we print a 404 error message if a file is not found. At the end we close the client like we would close a file, and end the loop.</p>
+
+<code><pre>BROWSER...
+# This is the HTTP request we send to fetch a file
+if choice == "GET"
+    request = "GET #{path} HTTP/1.0\r\n\r\n"
+    socket = TCPSocket.open(host,port)  # Connect to server
+    socket.print(request)               # Send request
+    response = socket.read              # Read complete response
+
+    # Split response at first blank line into headers and body
+    headers,body = response.split("\r\n\r\n", 2)
+    print headers
+    print body                          # And display it
+</pre></code>
+<p>This might be the simplest piece of code in the entire project and needs no explanation.</p>
+
+<p>I have never commented so much on a project before and it took every single explanation for me to understand what was happening. This blog post also has added to my understanding, and will be something I look back on in the future. </p>
+
 <h3>February 22-23</h3>
     <ul>
         <li>Worked on and completed Ruby on the Web Project <a href="https://github.com/ks927/Projects/tree/master/RubyWebProject">GitHub</a></li>
