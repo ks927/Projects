@@ -17,18 +17,33 @@ header {
     width: 90%;
 }
 
-/*
 main {
-    width: 90%;
-    margin: auto;
+    position: absolute;
+    margin-bottom: 60px;
 }
 
 footer {
-    width: 90%;
-    margin: auto;
-*/
-footer {
-    margin-bottom:
+    width: 100%;
+    height: 60px;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    border-top: solid 2px #d9d9d9;
+    position: fixed;
+}
+
+.next {
+    float: right;
+    font-size: 18px;
+    padding-top: 15px;
+    padding-right: 20px;
+}
+
+.last{
+    float: left;
+    font-size: 18px;
+    padding-top: 15px;
+    padding-left: 20px;18
 }
 
 nav ul {
@@ -136,11 +151,6 @@ img {
 
 figcaption {
     font-size: .85em;
-}
-
-
-.next {
-    float: right;
 }
 
 a {
