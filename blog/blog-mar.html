@@ -13,6 +13,38 @@
 
 <main>
 
+<h3>The Odin Project Blog Post 8</h3>
+    <datetime>March 3 2017</datetime>
+    <br>
+    <h4>Week 8 - Recursion</h4>
+    <p>
+        Recursion is the programming concept of calling a function from within itself. In effect this creates a loop of endless function calls if there is no condition stated that will end the program at a certain point. It is not extremely common to use recursion (thank God!) but it is very handy to know. Often times an iterator of some sort will suffice, but there are times when recursion will provide a more elegant solution.</p>
+
+    <p>There is no better way to explain than to jump into some code…</p>
+<code><pre>def factorial(n)
+    return 1 if n <= 0
+    n * factorial(n-1)
+end</pre></code>
+    <p>This is a factorial function that uses recursion. If you call factorial(5), within the program it will do 5 * factorial(4). This will then go a level deeper; meaning factorial(4) will get called and the function will run 4 * factorial(3). Again factorial(3) will get called and 3 * factorial(2) will get run. Then 2 * factorial(1) and finally 1 * factorial(0). Because we stated within the function to return 1 if n <= 0, the program does not blow the stack, but returns 1 when it reaches 0. 5*4*3*2*1 is output and we get 120.</p>
+
+    <code><pre>def fib(n)
+    return 0 if n == 0
+    return 1 if n == 1
+    fib(n-1) + fib(n-2)
+end</pre></code>
+    <p>Here is a much more complicated program. The Fibonacci sequence is a sequence of numbers starting from 1 that adds the previous 2 numbers  to get the next number. For instance, 1+0 is 1 (0, 1, 1), 1+1 is 2 (0, 1, 1, 2), 2+1 is 3 (0, 1, 1, 2, 3) and so on.</p>
+    <p>In this function, if we input a 5, we get fib(4) + fib(3). This then gets broken down into a two-sided problem. On the left side we'll have fib(3)+fib(2). Again, this gets broken down. Fib(2) leaves us with fib(1)+fib(0) or just 1 and 0. Fib(3) becomes fib(2)+fib(1) but then fib(1) leaves us with 1. Fib(2) breaks down into fib(1)+fib(0) which gives us a 1 and a 0. On the left side of this problem we count up the amount of 1s that are left: which is 3. </p>
+    <p>Now we can go back to the right side of the original input. fib(3) becomes fib(2)+fib(1). Fib(1) gives us a 1. Fib(2) gives us fib(1)+fib(0) or a 1 and a 0. On the right side we are left with 2 1s. After adding up the left side and the right side, we conclude that the fifth number in the fibonacci sequence is 5.</p>
+
+
+
+    <p>Like last week’s lesson, this was another section that I studied and struggled with during my JavaScript days prior to TOP. Again, I did not enter the lesson discouraged. Instead, I was actually eager to possibly gain new perspectives on the topic and break through previous limitations I had while attempting to grasp the concept. The material TOP provided, in addition to practice problems, the project, and writing this blog have made me more confident in dealing with recursive methods, though I am still far from an expert.</p>
+
+<h3>March 2 2017</h3>
+    <ul>
+        <li>Began work on Linked Lists project</li>
+    </ul>
+
 <h3>March 1 2017</h3>
     <ul>
         <li>Data Structures <a href="https://en.wikipedia.org/wiki/Data_structure">Wiki entry</a></li>
