@@ -60,6 +60,16 @@ nav li {
 }
 
 
+.container{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    display: table;
+}
+/*
 .container {
     position: absolute;
     top: 45%;
@@ -69,17 +79,32 @@ nav li {
     max-width: 90%;
     max-height:
 }
+*/
 
+#title {
+    text-align: center;
+    margin-top: 140px;
+}
+
+#caption {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    letter-spacing: 1%;
+    line-height: 1.5em;
+    margin-top: 25px;
+}
+/*
 #caption {
     text-align: center;
     letter-spacing: 1%;
     line-height: 1.5em;
 }
-
+*/
 #links {
     width: 300px;
     height: 200px;
-    margin-top: 400px;
+    margin-top: 200px;
 }
 
 
