@@ -1,5 +1,6 @@
+class BinarySearch
 
-class Node
+  class Node
     attr_accessor :value, :parent_node, :lchild_node, :rchild_node
     
     def initialize(value, parent_node=nil, lchild_node=nil, rchild_node=nil)
@@ -7,32 +8,70 @@ class Node
         @lchild_node = lchild_node
         @rchild_node = rchild_node
     end
+  end
     
-    def build_tree(arr, arr_start=0, arr_end=arr.length-1)
-        return arr if arr_start > arr_end
-        
-        root = arr_start + (arr_end - arr_start)/2
-        puts arr[root]
-        node = Node.new(arr[root])
-        
-        @lchild_node = build_tree(arr, arr_start, root-1)
-        @rchild_node = build_tree(arr, root+1, arr_end)
-        
-        return node
-      
+    def initialize
+       @root = nil 
     end
     
+    def insert_node(root, leaf)
+      if leaf.value < root.value && root.lchild_node == nil
+        root.lchild_node = leaf
+      elsif leaf.value > root.value && root.rchild_node == nil
+        root.rchild_node = leaf
+      elsif leaf.value < root.value && root.lchild_node != nil
+        insert_node(root.lchild_node, leaf)
+      elsif leaf.value > root.value && root.rchild_node != nil
+        insert_node(root.rchild_node, leaf) 
+      elsif leaf.value == root.value && root.rchild_node != nil
+        insert_node(root.rchild_node, leaf) 
+      end
+    end
+    
+    def build_tree(arr)
+        @root = Node.new(arr[0])
+        arr.each do |value|
+           leaf = Node.new(value)
+           insert_node(@root, leaf)
+        end
+    end
+    
+    def breadth_first_search(value)
+        return nil if @root.nil?
+        queue = [@root]
+        until queue.empty?
+            current = queue.shift # shifts out first item
+            return current if current.value == value
+            queue << current.lchild_node unless current.lchild_node == nil
+            queue << current.rchild_node unless current.rchild_node == nil
+        end
+        return nil
+    end
+    
+    def depth_first_search(value)
+        return nil if @root.nil?
+        stack = [@root]
+        until stack.empty?
+            current = stack.pop # pops off last item
+            return current if current.value == value
+            stack << current.lchild_node unless current.lchild_node == nil
+            stack << current.rchild_node unless current.rchild_node == nil
+        end
+        return nil
+    end
+    
+    def dfs_rec(value, current=@root)
+        return nil if @root.nil?
+        return current if current.value == value
+        if value <= current.value
+            dfs_rec(value, current.lchild_node) unless current.lchild_node == nil
+        else
+            dfs_rec(value, current.rchild_node) unless current.rchild_node == nil
+        end
+    end
+
 end
 
-# [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
-# [1, 2, 3, 4, 5, 6, 7]
+tree = BinarySearch.new
+tree.build_tree[1, 5, 4, 7, 2, 365]
 
-=begin
-def insert_node(root, leaf)
-    return leaf if root.nil?
-    if leaf.value < root.value
-        leaf.value = @lchild_node
-    elsif leaf.value > root.value
-        leaf.value = @rchild_node
-end
-=end
