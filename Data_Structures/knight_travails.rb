@@ -1,8 +1,8 @@
 class Board
     
   class Node 
-    attr_accessor :pos, :parent, :children
-    
+    attr_accessor :parent, :children
+    attr_reader :pos
     def initialize(pos, parent=nil)
       @pos = pos
       @parent = parent
@@ -10,8 +10,7 @@ class Board
     end 
     
   end 
-  
-    
+  attr_reader :loc
   def initialize(loc)
         @loc = Node.new(loc)
         @visited = []
@@ -20,7 +19,7 @@ class Board
     
     # check if pos is within 8x8 board
     def check_move(pos)
-        return (pos[0] > -1 && pos[0] < 8) && (pos[1] > -1 pos[1] < 8) ? true : false
+        return (pos[0] > -1 && pos[0] < 8) && (pos[1] > -1 && pos[1] < 8) ? true : false
     end
     
     # use check_move on possible knight maneuvers
@@ -63,7 +62,7 @@ class Board
             path << current.pos
             current = current.parent
         end
-        puts "You made it in #{path.size} moves! Here's your path: "
+        puts "You made it in #{path.size-1} moves! Here's your path: "
         puts "#{path.reverse}"
     end
 end
