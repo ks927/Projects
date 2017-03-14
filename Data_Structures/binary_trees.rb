@@ -3,7 +3,7 @@ class BinarySearch
   class Node
     attr_accessor :value, :parent_node, :lchild_node, :rchild_node
     
-    def initialize(value, parent_node=nil, lchild_node=nil, rchild_node=nil)
+    def initialize(value, lchild_node=nil, rchild_node=nil)
         @value = value
         @lchild_node = lchild_node
         @rchild_node = rchild_node
@@ -74,4 +74,5 @@ end
 
 tree = BinarySearch.new
 tree.build_tree[1, 5, 4, 7, 2, 365]
+tree.dfs_rec(7)
 
