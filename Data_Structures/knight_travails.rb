@@ -63,7 +63,8 @@ class Board
             path << current.pos
             current = current.parent
         end
-        path.reverse
+        puts "You made it in #{path.size} moves! Here's your path: "
+        puts "#{path.reverse}"
     end
 end
 
