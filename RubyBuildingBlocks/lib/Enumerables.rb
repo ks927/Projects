@@ -31,11 +31,12 @@ module Enumerable
     end
 
     def my_all?
-        check = true
         self.my_each do |i|
-            check = false unless yield i
+            if yield(i) == false
+                return false
+            end 
         end
-        check
+        true
     end
 
     def my_any?
