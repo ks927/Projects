@@ -13,11 +13,43 @@
 
 <main>
 
+<h3>March 15 2017</h3>
+    <ul>
+        <li>Began work on TDD warmup project</li>
+    </ul>
+
 <h3>March 14 2017</h3>
     <ul>
         <li>Completed knight's travails problem <a href="https://github.com/ks927/Projects/blob/master/Data_Structures/knight_travails.rb">GitHub</a></li>
-        <li>Began working on TDD project</li>
+        <li>Followed this <a href="https://semaphoreci.com/community/series/learn-rspec">TDD tutorial</a> to write my first rspec test</li>
     </ul>
+    <code><pre> require "string_calculator"
+
+describe StringCalculator do
+
+    describe ".add" do
+        context "given an empty string" do
+                it "returns zero" do
+                expect(StringCalculator.add("")).to eql(0)
+                end
+            end
+
+        context "two numbers" do
+            context "Given '2,4'" do
+                it "returns 6" do
+                    expect(StringCalculator.add("2,4")).to eql(6)
+                end
+            end
+
+            context "Given '17,100'" do
+                it "returns 117" do
+                    expect(StringCalculator.add("17,100")).to eql(117)
+                end
+            end
+
+        end
+    end
+end</pre></code>
 
 <h3>March 13 2017</h3>
     <ul>
