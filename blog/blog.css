@@ -21,6 +21,7 @@ header {
 main {
     position: absolute;
     margin-bottom: 60px;
+    margin-right: 50px;
 }
 
 footer {

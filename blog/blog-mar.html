@@ -13,6 +13,124 @@
 
 <main>
 
+<h3>The Odin Project Blog Post 10</h3>
+    <datetime>March 17 2017</datetime>
+    <br>
+    <h4>Week 10 - Test Driven Development</h4>
+
+<p>I’m writing this post as I am still struggling to grasp the concepts and syntax of the Rspec library. The very simple things I have no problem with. If it’s just testing a method or methods within a class, I can get it work. However, I spent the majority of the day yesterday trying to learn how to get my methods within an object to interact with each other within a test and call instance variables that were initialized when the object was created. Little nuances like that are still foreign to me, and I’m especially having trouble finding resources online that teach the basics, which is extremely frustrating. Nonetheless, I will walk through some of the basics of TDD and tests that I have applied to past projects here.</p>
+
+<p>recall the Caesar Cipher</p>
+
+<code><pre>def caesar_cipher(string, num)
+    cipher = ""
+
+    string.each_char do |ch|
+      ch = ch.ord
+      if ch.between?(97, 122)  || ch.between?(65, 90)
+        ch += (num % 26)
+          if ch > 122 || (ch > 90 && ch < 97)
+            return ch -= 26
+          end
+      end
+      ch = ch.chr
+      cipher << ch
+    end
+    puts cipher
+
+end</pre></code>
+
+    <p>The tests I applied to this method look like this</p>
+
+    <code><pre>require "Caesar_Cipher"
+
+describe "caesar_cipher" do
+    it "shifts a letter by a given value" do
+        expect(caesar_cipher("a", 3)).to eql("d")
+    end
+
+    it "shifts a string by a given value" do
+        expect(caesar_cipher("aaa", 3)).to eql("ddd")
+    end
+
+    it "leaves uppercase and lowercase intact" do
+        expect(caesar_cipher("aBcD", 3)).to eql("dEfG")
+    end
+
+    it "leaves special case characters intact" do
+        expect(caesar_cipher("abc!", 3)).to eql("def!")
+    end
+
+    it "accounts spaces in the string" do
+        expect(caesar_cipher("What a string!", 3)).to eql("Zkdw d vwulqj!")
+    end
+
+    it "wraps from the end of the alphabet to the beginning" do
+        expect(caesar_cipher("zzz", 1)).to eql("aaa")
+    end
+
+end</pre></code>
+
+    <p>The object of test driven development is to write a test for a function before actually writing the function, have the test fail, then write the function so that it passes the test. Obviously in these cases I wrote the code first, but I can understand the merit in the process. The above Rspec code tests 6 cases within the caesar cipher function. As you can see the language is very English-like, making it easy to understand what it is you're testing. First I tell the program what the name of the method is I want to test by using the <strong>describe</strong> key word. Within this describe block, I say what <strong>it</strong> actually is about the method that I'm going to run and test. Next we plug in our method with paramaters and tell the computer what we <strong>expect</strong> to get in return. If what we expect in Rspec matches what the computer got when we run it in the terminal, the test passes.</p>
+
+    <code><pre>module Enumerable
+    def my_each
+        i = 0
+        while i < self.length
+            yield(self[i])
+            i +=1
+        end
+        self
+    end
+
+    def my_each_with_index
+        i = 0
+       while i < self.length
+           yield(self[i], i)
+           i += 1
+       end
+        self
+    end
+
+    def my_select
+        select = []
+        i = 0
+        while i < self.length
+           self.my_each do |i|
+            if yield i
+               select.push(i)
+            i += 1
+            end
+        end
+        select
+    end</pre></code>
+
+        <p>Here's an example with a tiny bit more complexity, but not much.</p>
+
+        <code><pre>require "Enumerables"
+
+describe Enumerable do
+
+    let(:array) { [1,2,3,4] }
+
+    describe "my_each" do
+        it "returns this array" do
+            expect(array.my_each{ |num| num}).to eql(array)
+        end
+    end
+
+    describe "select" do
+       it "returns array with selected values" do
+           expect(array.select{ |item| item < 3  }).to eql([1,2])
+       end
+    end</pre></code>
+
+            <p>Unlike the last example, this code is testing a group of methods within a module. The only change that needs to be made in the Rspec file is we nest our describe blocks inside a describe block that singles out the module as a whole. Another difference we can see here is the declaration of an array variable. I used the <strong>let</strong> key word to declare an array which I then used to test the iterators I created in my module.</p>
+
+            <p>I am working on testing my Tic Tac Toe game, but as previously mentioned, am having trouble with the function interactions.</p>
+
+
+
 <h3>March 15-16 2017</h3>
     <ul>
         <li>Began and worked on TDD warmup project</li>
