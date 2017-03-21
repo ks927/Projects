@@ -1,5 +1,9 @@
 class Board
+<<<<<<< HEAD:TicTacToe/tictactoe.rb
 
+=======
+attr_reader :board, :current_turn, :game_over
+>>>>>>> origin/master:TicTacToe/lib/tictactoe.rb
     def initialize
         @board = [
             0, 1, 2,
