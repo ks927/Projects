@@ -1,3 +1,7 @@
 source "https://rubygems.org"
 
+<<<<<<< HEAD
 gem "rspec"
+=======
+gem "rspec"
+>>>>>>> origin/master

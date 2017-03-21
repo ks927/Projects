@@ -241,7 +241,11 @@ end
 # will compute and display the necessary components to show two sequences
 # and their minimized differences side by side, just like the Unix utility
 # +sdiff+.
+<<<<<<< HEAD
 #
+=======
+#
+>>>>>>> origin/master
 #     same             same
 #     before     |     after
 #     old        <     -
