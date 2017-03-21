@@ -1,16 +1,16 @@
 class Board
-    
+attr_reader :board, :current_turn, :game_over
     def initialize
         @board = [
-            0, 1, 2, 
-            3, 4, 5, 
-            6, 7, 8 
+            0, 1, 2,
+            3, 4, 5,
+            6, 7, 8
             ]
         @current_turn = "X"
         @game_over = false
-        
+
     end
-    
+
     def show_board
         print @board[0..2]
         print "\n"
@@ -18,11 +18,11 @@ class Board
         print "\n"
         print @board[6..8]
     end
-    
+
     def change_turn
        @current_turn = @current_turn == "X" ? "O" : "X" unless @game_over == true
     end
-    
+
     def player_move(index)
             if @board[index] == "X" || @board[index] == "O"
                 puts "That space is taken"
@@ -34,7 +34,7 @@ class Board
                 change_turn
             end
     end
-    
+
     private
     def check_for_winner
         if @board[0] == @board[4] && @board[4] == @board[8]
@@ -65,7 +65,7 @@ class Board
             @game_over = false
         end
     end
-  
+
 end
 
 #Pseudocode
