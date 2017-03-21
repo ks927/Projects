@@ -2,11 +2,19 @@ require "tictactoe"
 
 describe Board do
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     before(:all) do
         @game = Board.new
     end
 
+=======
+
+    before(:all) do
+        @game = Board.new
+    end
+
+>>>>>>> origin/master
 =======
 
     before(:all) do
@@ -20,7 +28,11 @@ describe Board do
                 expect(@game.board[8]). to eq("X")
             end
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> origin/master
 =======
 
 >>>>>>> origin/master
@@ -29,7 +41,11 @@ describe Board do
             end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> origin/master
 =======
 
 >>>>>>> origin/master
@@ -42,6 +58,7 @@ describe Board do
                 expect(@game.game_over).to be true
             end
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         end
 
@@ -51,6 +68,17 @@ describe Board do
 
 
 end
+=======
+
+        end
+
+
+
+
+
+
+end
+>>>>>>> origin/master
 =======
 
         end

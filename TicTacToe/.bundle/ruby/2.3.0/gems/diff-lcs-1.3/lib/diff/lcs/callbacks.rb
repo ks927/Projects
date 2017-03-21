@@ -242,7 +242,11 @@ end
 # and their minimized differences side by side, just like the Unix utility
 # +sdiff+.
 <<<<<<< HEAD
+<<<<<<< HEAD
 #
+=======
+#
+>>>>>>> origin/master
 =======
 #
 >>>>>>> origin/master

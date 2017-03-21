@@ -1,7 +1,11 @@
 class Board
 <<<<<<< HEAD:TicTacToe/lib/tictactoe.rb
+<<<<<<< HEAD:TicTacToe/lib/tictactoe.rb
 <<<<<<< HEAD:TicTacToe/tictactoe.rb
 
+=======
+attr_reader :board, :current_turn, :game_over
+>>>>>>> origin/master:TicTacToe/lib/tictactoe.rb
 =======
 attr_reader :board, :current_turn, :game_over
 >>>>>>> origin/master:TicTacToe/lib/tictactoe.rb
