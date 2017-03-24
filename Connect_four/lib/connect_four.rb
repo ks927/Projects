@@ -1,5 +1,5 @@
 class Game
-    attr_reader :current_turn, :board
+    attr_reader :current_turn, :board, :game_over
     
     def initialize
         @current_turn = "R"
@@ -23,13 +23,14 @@ class Game
     def play
       until @game_over == true
         place_piece
+        check_for_winner
         change_turn
         show_board
       end
     end
     
     def place_piece
-       puts "pick a column to drop your piece"
+       puts "pick a column to drop your piece #{current_turn}"
         column = gets.chomp.to_i
         check_move?(column)
     end
@@ -53,6 +54,45 @@ class Game
            !change_turn
        end
     end
+    
+    def check_for_winner
+      (0..5).each do |x| 
+			  (0..6).each do |y|
+			    # horizontal
+				  if @board[x][y] == @current_turn &&
+				    @board[x][y+1] == @current_turn &&
+				      @board[x][y+2] == @current_turn &&
+				        @board[x][y+3] == @current_turn
+				          puts "#{current_turn} wins!"
+				          @game_over = true
+				  end
+				  # vertical
+				  if @board[x][y] == @current_turn &&
+				    @board[x+1][y] == @current_turn &&
+				      @board[x+2][y] == @current_turn &&
+				        @board[x+3][y] == @current_turn
+				          puts "#{current_turn} wins!"
+				          @game_over = true
+				  end
+				  # diagonal left
+				  if @board[x][y] == @current_turn &&
+				    @board[x+1][y-1] == @current_turn &&
+				      @board[x+2][y-2] == @current_turn &&
+				        @board[x+3][y-3] == @current_turn
+				          puts "#{current_turn} wins!"
+				          @game_over = true
+				  end
+				  #diagonal right
+				  if @board[x][y] == @current_turn &&
+				    @board[x+1][y+1] == @current_turn &&
+				      @board[x+2][y+2] == @current_turn &&
+				        @board[x+3][y+3] == @current_turn
+				          puts "#{current_turn} wins!"
+				          @game_over = true
+				  end
+				end
+			end
+    end 
     
 end
 
