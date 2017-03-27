@@ -8,7 +8,6 @@ describe Board do
     end
 
 
-
         describe ".player_move" do
             it "sets the X or O at the proper place on the board" do
                 @game.player_move(8)
@@ -30,9 +29,7 @@ describe Board do
                 expect(@game.game_over).to be true
             end
 
-
         end
-
 
 end
 
