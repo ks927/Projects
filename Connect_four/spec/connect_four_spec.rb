@@ -4,22 +4,28 @@ describe Game do
     
     before(:all)do
         @player = Game.new
-        allow(@player).to receive(:gets)
     end
     
-    context "initialize" do
-        it "sets current turn to R" do
-            expect(@player.current_turn).to eql("R")
-        end
-        
-        it "sets board to be an array" do
-            expect(@player.board).to be_an_instance_of(Array)
-        end
-        
-        it "sets game over flag variable" do
-           expect(@player.game_over).to be false 
+    
+    describe ".place_piece" do
+        it "takes user input" do
+            allow(column).to recieve(:gets).and_return(1)
         end
     end
+    
+  #  context "initialize" do
+   #     it "sets current turn to R" do
+    #        expect(@player.current_turn).to eql("R")
+     #   end
+        
+#        it "sets board to be an array" do
+ #           expect(@player.board).to be_an_instance_of(Array)
+  #      end
+        
+   #     it "sets game over flag variable" do
+    #       expect(@player.game_over).to be false 
+     #   end
+#    end
     
 #    describe ".check_move?" do
  #       it "takes player input and places player in corresponding column" do
