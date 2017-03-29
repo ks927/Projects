@@ -1,6 +1,6 @@
 class Game
     attr_reader :current_turn, :board, :game_over
-    
+
     def initialize
         @current_turn = "R"
         @board = [
@@ -13,13 +13,13 @@ class Game
       %w(1 2 3 4 5 6 7)]
         @game_over = false
         show_board
-        play 
+        play
     end
-    
+
     def change_turn
-       @current_turn = @current_turn == "R" ? "Y" : "R" 
+       @current_turn = @current_turn == "R" ? "Y" : "R"
     end
-    
+
     def play
       until @game_over == true
         place_piece
@@ -28,23 +28,23 @@ class Game
         show_board
       end
     end
-    
+
     def place_piece
        puts "pick a column to drop your piece #{current_turn}"
         column = gets.chomp.to_i
         check_move?(column)
     end
-    
+
     def show_board
       @board.each do |row|
           puts ' ' + row.join(' ')
       end
     end
-    
+
     def check_move?(move)
        if (move.between?(1, 7) && @board[0][move-1] == "_")
-         true 
-         index = 6 
+         true
+         index = 6
           while @board[index][move-1] != "_"
             index -=1
           end
@@ -54,9 +54,9 @@ class Game
            !change_turn
        end
     end
-    
+
     def check_for_winner
-      (0..5).each do |x| 
+      (0..5).each do |x|
 			  (0..6).each do |y|
 			    # horizontal
 				  if @board[x][y] == @current_turn &&
@@ -92,12 +92,12 @@ class Game
 				  end
 				end
 			end
-    end 
-    
+    end
+
 end
 
 # @board[row][column]
-# index = 0 
+# index = 0
 # while @board[index][column-1] != "_"
 #  index += 1
 # end

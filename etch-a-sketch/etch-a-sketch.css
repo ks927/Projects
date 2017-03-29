@@ -4,12 +4,15 @@
            margin: 0 auto;
            outline: 1px solid black;
        }
-       
+
 #container div {
            display: inline-block;
            float: left;
            cursor: cell;
-           
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
        }
 
 .outline {

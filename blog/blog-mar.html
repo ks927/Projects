@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Daily Coding Blog</title>
+<link href="blog.css" type="text/css" rel="stylesheet" />
+
+</head>
+<body>
+    <header>
+        <h1 id="top"> <a href="blog-index.html"> My Daily Coding Blog</a></h1>
+        <h2>March</h2>
+    </header>
+
+<main>
+
+<h3>March 20 2017</h3>
+    <ul>
+        <li>Updated weekly goals</li>
+        <li>Completed testing Tic Tac Toe game</li>
+        <li>Joined the <a href="https://www.meetup.com/Philadelphia-JavaScript-Developers/">Philadelphia JavaScript Developers</a> meetup</li>
+    </ul>
+
+<h3>The Odin Project Blog Post 10</h3>
+    <datetime>March 17 2017</datetime>
+    <br>
+    <h4>Week 10 - Test Driven Development</h4>
+
+<p>I’m writing this post as I am still struggling to grasp the concepts and syntax of the Rspec library. The very simple things I have no problem with. If it’s just testing a method or methods within a class, I can get it work. However, I spent the majority of the day yesterday trying to learn how to get my methods within an object to interact with each other within a test and call instance variables that were initialized when the object was created. Little nuances like that are still foreign to me, and I’m especially having trouble finding resources online that teach the basics, which is extremely frustrating. Nonetheless, I will walk through some of the basics of TDD and tests that I have applied to past projects here.</p>
+
+<p>recall the Caesar Cipher</p>
+
+<code><pre>def caesar_cipher(string, num)
+    cipher = ""
+
+    string.each_char do |ch|
+      ch = ch.ord
+      if ch.between?(97, 122)  || ch.between?(65, 90)
+        ch += (num % 26)
+          if ch > 122 || (ch > 90 && ch < 97)
+            return ch -= 26
+          end
+      end
+      ch = ch.chr
+      cipher << ch
+    end
+    puts cipher
+
+end</pre></code>
+
+    <p>The tests I applied to this method look like this</p>
+
+    <code><pre>require "Caesar_Cipher"
+
+describe "caesar_cipher" do
+    it "shifts a letter by a given value" do
+        expect(caesar_cipher("a", 3)).to eql("d")
+    end
+
+    it "shifts a string by a given value" do
+        expect(caesar_cipher("aaa", 3)).to eql("ddd")
+    end
+
+    it "leaves uppercase and lowercase intact" do
+        expect(caesar_cipher("aBcD", 3)).to eql("dEfG")
+    end
+
+    it "leaves special case characters intact" do
+        expect(caesar_cipher("abc!", 3)).to eql("def!")
+    end
+
+    it "accounts spaces in the string" do
+        expect(caesar_cipher("What a string!", 3)).to eql("Zkdw d vwulqj!")
+    end
+
+    it "wraps from the end of the alphabet to the beginning" do
+        expect(caesar_cipher("zzz", 1)).to eql("aaa")
+    end
+
+end</pre></code>
+
+    <p>The object of test driven development is to write a test for a function before actually writing the function, have the test fail, then write the function so that it passes the test. Obviously in these cases I wrote the code first, but I can understand the merit in the process. The above Rspec code tests 6 cases within the caesar cipher function. As you can see the language is very English-like, making it easy to understand what it is you're testing. First I tell the program what the name of the method is I want to test by using the <strong>describe</strong> key word. Within this describe block, I say what <strong>it</strong> actually is about the method that I'm going to run and test. Next we plug in our method with paramaters and tell the computer what we <strong>expect</strong> to get in return. If what we expect in Rspec matches what the computer got when we run it in the terminal, the test passes.</p>
+
+    <code><pre>module Enumerable
+    def my_each
+        i = 0
+        while i < self.length
+            yield(self[i])
+            i +=1
+        end
+        self
+    end
+
+    def my_each_with_index
+        i = 0
+       while i < self.length
+           yield(self[i], i)
+           i += 1
+       end
+        self
+    end
+
+    def my_select
+        select = []
+        i = 0
+        while i < self.length
+           self.my_each do |i|
+            if yield i
+               select.push(i)
+            i += 1
+            end
+        end
+        select
+    end</pre></code>
+
+        <p>Here's an example with a tiny bit more complexity, but not much.</p>
+
+        <code><pre>require "Enumerables"
+
+describe Enumerable do
+
+    let(:array) { [1,2,3,4] }
+
+    describe "my_each" do
+        it "returns this array" do
+            expect(array.my_each{ |num| num}).to eql(array)
+        end
+    end
+
+    describe "select" do
+       it "returns array with selected values" do
+           expect(array.select{ |item| item < 3  }).to eql([1,2])
+       end
+    end</pre></code>
+
+            <p>Unlike the last example, this code is testing a group of methods within a module. The only change that needs to be made in the Rspec file is we nest our describe blocks inside a describe block that singles out the module as a whole. Another difference we can see here is the declaration of an array variable. I used the <strong>let</strong> key word to declare an array which I then used to test the iterators I created in my module.</p>
+
+            <p>I am working on testing my Tic Tac Toe game, but as previously mentioned, am having trouble with the function interactions.</p>
+
+
+
+<h3>March 15-16 2017</h3>
+    <ul>
+        <li>Began and worked on TDD warmup project</li>
+    </ul>
+
+<h3>March 14 2017</h3>
+    <ul>
+        <li>Completed knight's travails problem <a href="https://github.com/ks927/Projects/blob/master/Data_Structures/knight_travails.rb">GitHub</a></li>
+        <li>Followed this <a href="https://semaphoreci.com/community/series/learn-rspec">TDD tutorial</a> to write my first rspec test</li>
+    </ul>
+    <code><pre> require "string_calculator"
+
+describe StringCalculator do
+
+    describe ".add" do
+        context "given an empty string" do
+                it "returns zero" do
+                expect(StringCalculator.add("")).to eql(0)
+                end
+            end
+
+        context "two numbers" do
+            context "Given '2,4'" do
+                it "returns 6" do
+                    expect(StringCalculator.add("2,4")).to eql(6)
+                end
+            end
+
+            context "Given '17,100'" do
+                it "returns 117" do
+                    expect(StringCalculator.add("17,100")).to eql(117)
+                end
+            end
+
+        end
+    end
+end</pre></code>
+
+<h3>March 13 2017</h3>
+    <ul>
+        <li>Updated weekly goals</li>
+        <li>Worked on knight's travails problem in Data Structures and Algorithms project</li>
+    </ul>
+
+<h3>The Odin Project Blog Post 9</h3>
+    <datetime>March 10 2017</datetime>
+    <br>
+    <h4>Week 9 - Data Structures</h4>
+
+<p>Unlike the previous two weeks, which gave me trouble despite being familiar from prior independent studies, this week’s concepts introduced a new anxiety. As we are exploring more of the world of computer science, I am having more and more trouble finding what it is we are making the computer do. For example, when I started out, I was mainly studying HTML/CSS and JavaScript. This was all done in the browser, thus I could see the results of what I was doing instantly. Even when TOP switched over to Ruby and I started with the command line and files, I could see that I was taking input from the user, opening files and manipulating their data, and returning information to the user. </p>
+
+<p>This week, however, I lost my way. The lesson was on data structures, and there were three projects(practice problems) with a relatively sparse amount of material on the subject. I think I made the mistake of attempting the projects before fully understanding the topic so I will try to explain it here, in retrospect. A data structure, in the simplest terms, is an organized way to store data for your application. The two types we focused on were <em>linked lists</em> and <em>binary trees</em>. After a lot of hunting, I finally found an explanation that described linked lists in plain English <a href=“http://softwareengineering.stackexchange.com/questions/128520/what-are-concrete-rules-for-using-a-linked-list-instead-of-an-array”>here</a>. </p>
+
+    <p>Basically, as I understand it, the main difference between an array and a linked list is that you can add new items to the LL without having to make a new copy of it, unlike an array. This is done with the LL's node and pointer system. Each value in the list sits on a node, and points to the next node, with the final node pointing to nil. If you want to add a new value, you just make the node before it point to it, and have the new node point to the node after it. Here is a visualization of [1, 2, "dog", 365] as a linked list: </p>
+
+    <p>(1) -> (2) -> ("dog") -> (365) -> nil</p>
+
+    <p>Here is my linked lists project <a href="https://github.com/ks927/Projects/blob/master/linked_list/linked_list.rb">GitHub</a></p>
+
+    <p>Next up was the binary tree. The best way to describe this data structure is for me to compare it to the linked list. While the linked list is a linear structure, meaning each node points to one other item in a single, possibly long line, binary trees' nodes can point to two nodes at a time. This allows for much faster search times. Here's a visual example taken from a <a href="http://stackoverflow.com/questions/2130416/what-are-the-applications-of-binary-trees">Stack Overflow answer</a> </p>
+
+    <code><pre> LINKED LIST sorted alphabetically
+     Alice
+    /     \
+   =       Bob
+       /   \
+      =     Chloe
+           /     \
+          =       David
+                 /     \
+                =       Edwina
+                       /      \
+                      =        Frank
+                              /     \
+                             =       =
+    </pre></code>
+
+    <code><pre> BINARY TREE sorted length-wise from the root
+               Chloe
+            ___/     \___
+         Bob             Edwina
+        /   \           /      \
+   Alice     =      David        Frank
+  /     \          /     \      /     \
+ =       =        =       =    =       =
+    </pre></code>
+
+    <p>In the first code example, if you wanted to find Frank, you would have to traverse six nodes to get to him. This is a linked list that is sorted alphabetically from Alice to Frank. In the second example, it would only take you three nodes. This one's a little more complicated. If the name is shorter than the root(Chloe) it gets moved the left, while if it's longer then it gets moved to the right. Subsequently, if it is shorter or longer than the next node, these same steps are followed until it gets placed. It is added complexity, but you can see the advantage. Here is my binary search project <a href="https://github.com/ks927/Projects/blob/master/Data_Structures/binary_trees.rb">GitHub</a></p>
+
+    <p>And with that I think I've regained my footing in the world of computer science. No one can explain things better than you can to yourself. I have no doubt I'll get lost again next week. </p>
+
+<h3>March 8-9 2017</h3>
+    <ul>
+        <li>Completed Binary Search Tree project <a href="https://github.com/ks927/Projects/blob/master/Data_Structures/binary_trees.rb">GitHub</a></li>
+    </ul>
+
+<h3>March 7 2017</h3>
+    <ul>
+        <li>Updated CSS on blog (background color, links)</li>
+        <li>Began work on Data Structures project</li>
+    </ul>
+
+<h3>March 6 2017</h3>
+    <ul>
+        <li>Updated weekly goals</li>
+        <li>Completed Linked Lists project <a href="https://github.com/ks927/Projects/blob/master/linked_list/linked_list.rb">GitHub</a></li>
+        <li>Worked on blog index page and css</li>
+    </ul>
+
+<h3>The Odin Project Blog Post 8</h3>
+    <datetime>March 3 2017</datetime>
+    <br>
+    <h4>Week 8 - Recursion</h4>
+    <p>
+        Recursion is the programming concept of calling a function from within itself. In effect this creates a loop of endless function calls if there is no condition stated that will end the program at a certain point. It is not extremely common to use recursion (thank God!) but it is very handy to know. Often times an iterator of some sort will suffice, but there are times when recursion will provide a more elegant solution.</p>
+
+    <p>There is no better way to explain than to jump into some code…</p>
+<code><pre>def factorial(n)
+    return 1 if n <= 0
+    n * factorial(n-1)
+end</pre></code>
+    <p>This is a factorial function that uses recursion. If you call factorial(5), within the program it will do 5 * factorial(4). This will then go a level deeper; meaning factorial(4) will get called and the function will run 4 * factorial(3). Again factorial(3) will get called and 3 * factorial(2) will get run. Then 2 * factorial(1) and finally 1 * factorial(0). Because we stated within the function to return 1 if n <= 0, the program does not blow the stack, but returns 1 when it reaches 0. 5*4*3*2*1 is output and we get 120.</p>
+
+    <code><pre>def fib(n)
+    return 0 if n == 0
+    return 1 if n == 1
+    fib(n-1) + fib(n-2)
+end</pre></code>
+    <p>Here is a much more complicated program. The Fibonacci sequence is a sequence of numbers starting from 1 that adds the previous 2 numbers  to get the next number. For instance, 1+0 is 1 (0, 1, 1), 1+1 is 2 (0, 1, 1, 2), 2+1 is 3 (0, 1, 1, 2, 3) and so on.</p>
+    <p>In this function, if we input a 5, we get fib(4) + fib(3). This then gets broken down into a two-sided problem. On the left side we'll have fib(3)+fib(2). Again, this gets broken down. Fib(2) leaves us with fib(1)+fib(0) or just 1 and 0. Fib(3) becomes fib(2)+fib(1) but then fib(1) leaves us with 1. Fib(2) breaks down into fib(1)+fib(0) which gives us a 1 and a 0. On the left side of this problem we count up the amount of 1s that are left: which is 3. </p>
+    <p>Now we can go back to the right side of the original input. fib(3) becomes fib(2)+fib(1). Fib(1) gives us a 1. Fib(2) gives us fib(1)+fib(0) or a 1 and a 0. On the right side we are left with 2 1s. After adding up the left side and the right side, we conclude that the fifth number in the fibonacci sequence is 5.</p>
+
+
+
+    <p>Like last week’s lesson, this was another section that I studied and struggled with during my JavaScript days prior to TOP. Again, I did not enter the lesson discouraged. Instead, I was actually eager to possibly gain new perspectives on the topic and break through previous limitations I had while attempting to grasp the concept. The material TOP provided, in addition to practice problems, the project, and writing this blog have made me more confident in dealing with recursive methods, though I am still far from an expert.</p>
+
+<h3>March 2 2017</h3>
+    <ul>
+        <li>Began work on Linked Lists project</li>
+    </ul>
+
+<h3>March 1 2017</h3>
+    <ul>
+        <li>Data Structures <a href="https://en.wikipedia.org/wiki/Data_structure">Wiki entry</a></li>
+        <li><a href="https://www.youtube.com/watch?v=6QS_Cup1YoI">Video</a> on stacks and queues</li>
+        <li><a href="http://cs50.tv/2012/fall/shorts/binary_search/binary_search-720p.mp4">CS50x video</a> on binary trees</li>
+        <li>Gentle Introduction to Algorithms for Web Developers <a href="http://www.giocc.com/a-gentle-introduction-to-algorithms-for-web-developers.html">post</a></li>
+        <li>Mycodeschool videos on </li>
+            <ul>
+                <li><a href="https://www.youtube.com/watch?v=9RHO6jU--GU">Binary tree traversal</a></li>
+                <li><a href="https://www.youtube.com/watch?v=86g8jAQug04">Level order traversal</a></li>
+                <li><a href="https://www.youtube.com/watch?v=gm8DUJJhmY4">Pre, In, and Postorder traversal</a></li>
+            </ul>
+    </ul>
+
+
+    </main>
+
+    <footer>
+    <a href="blog-feb.html" class="next">February posts>></a>
+    </footer>
+
+    </body>
+</html>

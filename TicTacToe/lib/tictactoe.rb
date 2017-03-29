@@ -1,5 +1,6 @@
 class Board
 attr_reader :board, :current_turn, :game_over
+
     def initialize
         @board = [
             0, 1, 2,

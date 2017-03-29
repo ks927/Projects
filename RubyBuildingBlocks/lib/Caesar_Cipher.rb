@@ -12,7 +12,7 @@ def caesar_cipher(string, num)
         cipher << ch
     end
     return cipher
-    
+
 end
 
 # UPCASE = 65-90

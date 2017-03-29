@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Daily Coding Blog</title>
+<link href="blog.css" type="text/css" rel="stylesheet" />
+
+</head>
+<body>
+    <header>
+        <h1 id="top"> <a href="blog-index.html"> My Daily Coding Blog</a></h1>
+        <h2>February</h2>
+    </header>
+
+<main>
+
+<h3>February 27-28</h3>
+    <ul>
+        <li>Recursion code quiz</li>
+        <li>Worked on and completed TOP Recursion project <a href="https://github.com/ks927/Projects/tree/master/Recursion">GitHub</a></li>
+        <code><pre>fibonacci sequence
+def fib(n)
+    return 0 if n == 0
+    return 1 if n == 1
+    fib(n-1) + fib(n-2)
+end
+        </pre></code>
+    </ul>
+
+<h3>The Odin Project Blog Post 7</h3>
+    <datetime>February 24 2017</datetime>
+    <br>
+    <h4>Week 7 - Creating a Web Server and Client</h4>
+
+<p>While each project has challenged me in its own way, this week’s Ruby on the Web assignment was a true test of my patience. I don’t know if it’s something that I’m just not getting, or if working with HTTP and servers really is that tricky, but this stuff just doesn’t seem to make the connection in my brain that everything else does. Even before I began TOP, when I studied Node.js I struggled with it compared to the regular browser JavaScript. Therefore, I wanted to use this week’s lesson to strengthen my deficiency. Sadly there wasn’t a whole lot of material before we were sent off to begin the project. So I would need to learn by trial and error…and mostly by studying other students’ code.</p>
+
+<p>I'm going to break this project down as simply as possible; going chunk of code by chunk of code...</p>
+
+<code><pre> SERVER...
+require 'socket'
+require 'json'
+
+server = TCPServer.open(8000) # Socket to listen on port 8000
+loop { #Servers run forever
+  client = server.accept  # Wait for a client to connect
+  header = ""
+  while line = client.gets # read lines from client
+    header += line
+    break if header =~ /\r\n\r\n$/ # breaks at end of initial request line
+  end
+</pre></code>
+<p>First we open a socket on the port # of our choice, and wait for a client(or browser) to connect to that socket. Sockets are connections are between servers and clients that allow data to stream through them. Next we begin a loop because we want the server to run forever. This next sequence is the most confusing part. First, we call the server object's 'accept' instance method and store it in a variable called client. The while loops gets(or reads) each line from the client until it finds a double CRLF, then stops. This is important because that is how HTTP transactions are ended.</p>
+<code><pre> BROWSER...
+require 'socket'
+require 'json'
+
+host = 'localhost'     # The web server
+port = 8000            # Default HTTP port
+path = "index.html"   # The file we want
+post_path = "thanks.html"</pre></code>
+<p>Similarly to the server, on the client-side we begin by requiring the socket library. We'll get to the json library later. Next, we declare our variables. The host will be local, the port will be the same as the server, and the paths will be linked up later on.</p>
+
+<code><pre>SERVER...
+ puts "Request: #{header}"
+    method = header.split # split headers
+    content_length = header.split.last.to_i # split headers and retrieve last one
+    viking_hash = client.read(content_length) # store hash in variable
+    if method[0] == "POST" # if first elem is POST
+        path = method[1].to_s # second elem is path
+        if File.exist?(path)
+            params = JSON.parse(viking_hash) # parse the hash
+            new_yield = "<li>Name: #{params['viking']['name']}</li><li>Email: #{params['viking']['email']}</li>"
+            file = File.read(path) # open that file
+            body = file.gsub('<%= yield %>', new_yield) # sub parsed hash in body
+            client.print "HTTP/1.0 200 OK\r\n" +
+                         "Content-Type: text/html\r\n" +
+                         "Content-Length: #{body.bytesize}" +
+                         "Connection: close\r\n"
+            client.print body # print the body
+        end
+</pre></code>
+<p>Next up on the server, we puts the header request that was made by the client. The first request we are going to deal with is a POST request. We split the header, retrieve the last element which contains our hash with the json, and store it in a variable. Conditionals will tell us if the request made from the client is a POST request, and if the path with that POST request has an existing file. If they are both true, we use json to parse our hash, read that file, and replace the yield statement from the file with our parsed hash. Finally, we print our HTTP transaction headers.</p>
+
+<code><pre>BROWSER...
+puts "Would you like to GET or POST ?"
+choice = gets.chomp
+
+elsif choice == "POST"
+    puts "What would you like your Viking name to be?"
+    name = gets.chomp
+    puts "What would you like your Viking email to be?"
+    email = gets.chomp
+    hash = {:viking => {:name=>name, :email=>email} }
+    info = hash.to_json
+    message = "POST #{post_path} HTTP/1.0\r\n" +
+             "From: blah@yahoo.com\r\n" +
+             "User-Agent: HTTPTool/1.0\r\n" +
+             "Content-Type: application/x-www-form-urlencoded\r\n" +
+             "Content-Length: #{info.size}\r\n\r\n" +
+             "#{info}\r\n"
+    socket = TCPSocket.open(host,port)
+    socket.print(message)
+    response = socket.read
+    headers,body = response.split("\r\n\r\n", 2)
+    print headers
+    print body                          # And display it
+end
+</pre></code>
+<p>This is a little out of order to match up with the server. Nonetheless, when we run the browser in the terminal, it presents us with a choice which will be stored in a variable. If our choice is "POST", we are given more choices which are stored in a hash. This should sound familiar. Then, we create our headers to send to the server. After all of that, we open our socket with the host and port that we declared in the first step so that we can connect to the server that we created. </p>
+
+<code><pre>SERVER...
+elsif method[0] == "GET" # 1st element = GET
+        path = method[1].to_s
+        if File.exist?(path) # if 2nd elem = our file
+            file = File.read(path) # open that file
+            client.print "HTTP/1.0 200 OK\r\n" +
+                    "Content-Type: text/html\r\n" +
+                    "Content-Length: #{file.size}\r\n" +
+                    "Connection: close\r\n\r\n"
+            client.print file
+        else
+            message = "File not found"
+            client.print "HTTP/1.1 404 Not Found\r\n" +
+                         "Content-Length: #{message.size}\r\n" +
+                         "Connection: close\r\n\r\n"
+            client.print message
+        end
+    end
+    client.close
+}
+</pre></code>
+<p>The rest is pretty straightforward when compared to the beginning. We have the same code as before, but now just looking for a GET request and existing path within that request. The only difference here is if there is no file we print a 404 error message if a file is not found. At the end we close the client like we would close a file, and end the loop.</p>
+
+<code><pre>BROWSER...
+# This is the HTTP request we send to fetch a file
+if choice == "GET"
+    request = "GET #{path} HTTP/1.0\r\n\r\n"
+    socket = TCPSocket.open(host,port)  # Connect to server
+    socket.print(request)               # Send request
+    response = socket.read              # Read complete response
+
+    # Split response at first blank line into headers and body
+    headers,body = response.split("\r\n\r\n", 2)
+    print headers
+    print body                          # And display it
+</pre></code>
+<p>This might be the simplest piece of code in the entire project and needs no explanation.</p>
+
+<p>I have never commented so much on a project before and it took every single explanation for me to understand what was happening. This blog post also has added to my understanding, and will be something I look back on in the future. </p>
+
+<h3>February 22-23</h3>
+    <ul>
+        <li>Worked on and completed Ruby on the Web Project <a href="https://github.com/ks927/Projects/tree/master/RubyWebProject">GitHub</a></li>
+        <li>Completed videos and readings on TOP's algorithms section</li>
+        <li>Basterd Book of Ruby <a href="http://ruby.bastardsbook.com/chapters/recursion/">Recursion chapter</a></li>
+        <li><a href="https://vimeo.com/24716767">Kickstart Ruby video</a> on recursion</li>
+        <li></li>
+    </ul>
+
+<h3>February 21 2017</h3>
+    <ul>
+        <li>Updated weekly goals</li>
+        <li>Began work on Ruby on the Web project</li>
+    </ul>
+
+<h3>The Odin Project Blog Post 6</h3>
+    <datetime>February 17 2017</datetime>
+    <br>
+    <h4>Week 6 - Files and I/O and Hangman</h4>
+
+<p>I was ready to give up before I even started the project this week. It seemed like a mountain that was too steep and too high for me to climb, and I just wanted to move onto the next section before even attempting it. Alas, I figured I could at least practice what we learned in the lesson to load the dictionary into my script, so I started there. From there I figured I might as well iterate over the dictionary and find the words that were between five and seven characters long. It was at this point that I realized two things.</p>
+<ol>
+    <li>I’m starting to break problems down like a programmer</li>
+    <li>This game is going to take an OOP approach</li>
+    </ol>
+<p>The first revelation is something that I think (hope) will play an integral role in my development as a developer. When you are given a large assignment, it is important not to be overwhelmed by the big picture or how vast the final structure of the code might look in your head. Up to this point, I have struggled with this feeling. I’d envision the final project and end up staring at a blank screen for an hour in agony. One of the principals of programming is to break the code into its smallest possible step and start from there. In my case, I wasn’t even intending to continue after my first step, but the project became more manageable after it was broken down. Now I see the value in this process.</p>
+
+<p>Second, on a more narrow scope, I discovered that I would need to make a Game class and take an OOP approach towards this project. Using my strategy from the tic tac toe game, I sort of worked backwards again, imagining how the user might interact to play my hangman game. It begins with the command line asking for a user input. Depending on the response, a method within the class is run. The nucleus of the Game is the play loop, which interacts with the user, checking his/her guess, and showing what letters the user has guessed right or wrong. Also similar to my tic tac toe creation is the way in which I check if the game is over. I set up a method that sets the game_over instance variable to true if the game is won, lost, or saved.</p>
+
+<p>The difference between my hangman and tic tac toe games lies in the ability to save and load hangman files. In fact that’s what this section of TOP’s curriculum was on and the point of the project. Thus, in order to save the game, I created a method that asks the user to name the game he/she is playing, writes a file with that name to the saved directory, and utilizes the marshal library to serialize and dump the game file into the saved directory. The load method basically does the same thing in reverse. It asks the user for the name of the game file, finds it in the saved directory, and deserializes it.</p>
+
+<h3>February 16 2017</h3>
+    <ul>
+        <li>Completed Hangman project <a href="https://github.com/ks927/Projects/tree/master/Hangman">GitHub</a></li>
+        <li>Read Chapter 14 Beginning Ruby</li>
+        <li>Read this super simple <a href="http://rest.elkstein.org/2008/02/using-rest-in-ruby.html">REST tutorial</a></li>
+    </ul>
+    <img src="hangman.png" alt="hangman" >
+
+<h3>February 15 2017</h3>
+    <ul>
+        <li>Worked on Hangman project from TOP</li>
+    </ul>
+
+<h3>February 14 2017</h3>
+    <ul>
+        <li>Chapter 9 Beginning Ruby</li>
+        <li><a href="http://ruby.bastardsbook.com/chapters/io/">Basterds Book of Ruby</a> chapter on File I/O</li>
+        <li>Completed Event Manager project from TOP <a href="https://github.com/ks927/Projects/tree/master/event_manager">GitHub</a></li>
+    </ul>
+    <code><pre>stop_words = %w{the a by on for of are with just but and to the my I has some in}
+
+lines = File.readlines("text.txt")
+line_count = lines.size
+text = lines.join
+
+# Character count
+character_count = text.length
+character_count_no_spaces = text.gsub(/\s+/, '').length
+
+# Count words, sentences, paragraphs
+word_count = text.split.length
+sentence_count = text.split(/\.|\?|!/).length
+paragraph_count = text.split(/\n\n/).length
+
+# Make list of words that aren't stop words
+# count them, make out percentage of non-stop
+# words against all words
+all_words = text.scan(/\w+/)
+good_words = all_words.select{ |word| !stop_words.include?(word) }
+good_percentage = ((good_words.length.to_f / all_words.length.to_f) * 100).to_i
+
+# Summarize the text by cherry picking some choice sentences
+sentences = text.gsub(/\s+/, ' ').strip.split(/\.|\?|\!/)
+sentences_sorted = sentences.sort_by { |sentence| sentence.length }
+one_third = sentences_sorted.length / 3
+ideal_sentences = sentences_sorted.slice(one_third, one_third + 1)
+ideal_sentences = ideal_sentences.select { |sentence| sentence =~ /is|are/ }
+puts ideal_sentences.join(". ")
+
+# Output analysis to user
+puts "#{line_count} lines"
+puts "#{character_count} characters"
+puts "#{character_count_no_spaces} characters excluding spaces"
+puts "#{word_count} words"
+puts "#{sentence_count} sentences"
+puts "#{paragraph_count} paragraphs"
+puts "#{sentence_count / paragraph_count} sentences per paragraph (average)"
+puts "#{word_count / sentence_count} words per sentence (average)"
+puts "#{good_percentage}% of words are non-fluff words"
+puts "Summary:\n\n" + ideal_sentences.join(". ")
+puts "-- End of analysis"</pre></code>
+
+<h3>February 13 2017</h3>
+    <ul>
+        <li><a href="https://robots.thoughtbot.com/io-in-ruby">IO in Ruby</a></li>
+        <li><a href="https://www.youtube.com/watch?v=uS37TujnLRw">Serialization youtube video</a></li>
+        <li><a href="http://www.skorks.com/2010/04/serializing-and-deserializing-objects-with-ruby/">Readable vs. Binary serialization</a></li>
+        <li><a href="https://www.sitepoint.com/choosing-right-serialization-format/">YAML, JSON, and MessagePack</a></li>
+        <li>Chapter 4 Beginning Ruby</li>
+    </ul>
+
+<h3>The Odin Project Blog Post 5</h3>
+    <datetime>February 10 2017</datetime>
+    <br>
+    <h4>Week 5 - OOP and Tic Tac Toe</h4>
+
+<p>Super Bowl hangover and a mid-week funeral meant this was not the most productive week so far, but there were some positive takeaways. After last week’s struggles, I knew I had to really dig in with the readings and tutorials before jumping into the projects, so I did just that. Peter Cooper’s Beginning Ruby book made me feel like an idiot in such a good way. I was supposed to have read the first 3 chapters last week in addition to five through eight this week, so I found a free pdf online and started from the beginning. It was like all the answers that left me completely dumbfounded to last week’s projects were in that book. That made me feel a lot better. Once I completed the assigned tutorials, readings, and quizzes, I set to work on the first project for this section: a Tic Tac Toe game.</p>
+
+
+<h4>Tic Tac Toe</h4><a href="https://github.com/ks927/Projects/tree/master/TicTacToe">GitHub</a>
+
+<p>We were tasked with creating a command line tic tac toe game using our object oriented programming skills. Similarly to the etch-a-sketch project, my initial problem was trying to figure out how to generate the board. But because this entire game takes place in the terminal, meaning there’s no browser or html, I figured out all I would need is a simple array and then each player would just pick an index. From here I actually developed the game kind of backwards, and you can see at the bottom of my project I have some code commented out. That was one of the first things I typed, and it served as a goal for me to code towards.</p>
+
+<p>The game is currently on version 1; meaning there are still things that need to be added to make it completely functional. This includes something that should stop player moves after one player has been declared a winner. Also, I would like to add a welcome message which may be followed by a way to play without declaring variable_name.player_move. For now though, I am happy with what I have, and here is a walkthrough of my OOP tic tac toe game.</p>
+
+<p>On initialization, class Board creates a board with 9 indeces, a player "X", and a game_over checker that is set to false. To play, you must create an object of Board, call the Board's player_move method, and pick an index on the board. After each move, the game checks to see if that index has already been selected, checks for a winner, and finally, changes turn to the "O" player.</p>
+
+<p>Within the Board class, I created a check_for_winner method with all the possible winning combinations. If either "X" or "O" meet any of these combinations, the game_over instance variable is set to true and a winning message is displayed. The change_turn method is also halted if the game_over variable is set to true.</p>
+
+<h3>February 9 2017</h3>
+    <ul>
+        <li><a href="http://www.eriktrautman.com/posts/ruby-explained-classes"></a>Erik Truatman post on Classes</li>
+        <li><a href="http://www.eriktrautman.com/posts/ruby-explained-inheritance-and-scope"></a>Erik Trautman post on Inheritance and Scope</li>
+        <li>Ruby quizzes #5 and #7</li>
+        <li>Completed OOP Tic Tac Toe project <a href="https://github.com/ks927/Projects/tree/master/TicTacToe">GitHub</a></li>
+    </ul>
+
+
+<h3>February 7 2017</h3>
+    <ul>
+        <li>Read Chapters 5-8 of Beginning Ruby</li>
+    </ul>
+
+<h3>February 6 2017</h3>
+    <ul>
+        <li>Re skimmed the Codecademy sections on Ruby OOP</li>
+        <li>Read chapters 1-4 of Peter Cooper's <a href="ftp://ftp.cmpe.emu.edu.tr/COURSES/Cmpe418/Apress%20-%20Beginning%20Ruby%20-%20From%20Novice%20to%20Professiona%20(2007).pdf">Beginning Ruby</a></li>
+    </ul>
+
+<h3>The Odin Project Blog Post 4</h3>
+    <datetime>February 3 2017</datetime>
+    <br>
+    <h4>Week 4 - Bubble Sort</h4><a href="https://github.com/ks927/Projects/blob/master/RubyBuildingBlocks/bubble_sort.rb">GitHub</a>
+
+    <p>Bubble sort is a sorting algorithm used in programming that takes an array of items and places them in order. I came into this week with a pretty high level of intimidation and apprehension for this assignment because of bubble sort's reputation. It gets tossed around as a programming interview question that strikes fear into the minds of young coders. Needless to say, I've avoided and haven't looked forward to meeting it. The idea of the function, and in fact conceptualizing it, is not the hard part. You have two numbers next to each other. If the one to the left is greater than the one to the right, they switch. This continues until the greatest number is all the way to the right, the lowest is at the left, and the array is in order. My pseudocode looked good to me after a few minutes of reasoning out the steps, but I struggled with some of the Ruby syntax at first. That is until I googled, and found, a neat little trick for swapping x and y variables. Lets walk through the code:</p>
+    <p>First we initialize a flag variable, and set it to true, to tell us whether the looping is done. Next we have to do a 2-dimensional each_with_index loop. As the array is being looped over with the first .each, the second .each is looping over every item and checking to see if each inside index is greater than the outside index. If so, they are swapped with that Ruby magic I discovered. Within this if statement, I set flag to false, so I know that the loop is occuring.</p>
+    <p>Once out of the if statement, I double check that my loop performed what I wanted it to by resetting my flag to true, and printing the properly sorted array at the end.</p>
+
+<h3>February 2 2017</h3>
+    <ul>
+        <li>Completed Ruby Advanced Building Blocks project</li>
+            <ul>
+                <li>Bubble Sort</li>
+                <li>Enumerable Module</li>
+            </ul>
+        <code><pre>def bubble_sort(array)
+  swap_counter = -1
+
+  array.each_with_index do |index, x|
+    array.each_with_index do |index, y|
+      swap_counter == 0
+      if array[y] > array[x]
+        array[x], array[y] = array[y], array[x]
+        swap_counter += 1
+      else
+        swap_counter += 1
+      end
+      break if swap_counter == 0
+    end
+  end
+end</pre></code>
+    </ul>
+
+<h3>February 1 2017</h3>
+    <ul>
+        <li>Re skimmed the Codecademy Ruby sections on control flow, arrays, hashes, loops, blocks and sorting</li>
+        <li><a href="http://www.codequizzes.com/">Ruby Quizzes</a> 2-6</li>
+    </ul>
+
+    </main>
+
+    <footer>
+    <a href="blog-mar.html" class="last">&lt;&lt;March Posts</a>
+    <a href="blog-jan.html" class="next">January posts>></a>
+    </footer>
+
+    </body>
+</html>

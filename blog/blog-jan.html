@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 <title>Daily Coding Blog</title>
@@ -11,6 +12,209 @@
     </header>
 
 <main>
+
+<h3>January 31 2017</h3>
+    <ul>
+        <li>Completed Ruby Building Blocks project</li>
+            <ul>
+                <li>Caesar Cipher</li>
+                <li>Stock picker</li>
+                <li>Substring function</li>
+            </ul>
+        <code><pre>dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
+def substrings(string, dictionary)
+    strings = Hash.new(0)
+
+    dictionary.each do |word|
+        if string.include?word
+            strings[word] = string.scan(word).length
+        end
+    end
+    return strings
+end</pre></code>
+    </ul>
+
+<h3>The Odin Project-Blog Post 3</h3>
+    <datetime>January 30 2017</datetime>
+    <br>
+    <h4>Week 3 - Course 1 Wrap-Up</h4>
+
+    <h4>Test Driven Development Ruby “Project”</h4>
+
+    <p>I hesitate to call this assignment a project because, although it is on my <a href="https://github.com/ks927/Projects/tree/master/learn_ruby">GitHub</a>, it wasn’t necessarily building or creating anything. However, it was a great lesson in lesson in TDD and some valuable practice with the Ruby language. The tasks started off simple, quickly gained complexity, and a few I had such a hard time figuring out that I peeked at other student solutions for help. But all in all, it was another positive experience, and I look forward to working with Ruby further in the next section.</p>
+
+    <h4>Ruby on Rails Blog App</h4>
+
+    <p>The next, and final, project in the Web Development 101 course was a blog app using Ruby on Rails. Unlike the other projects where TOP gave us no help at all, this assignment was following a tutorial step for step. Yet somehow it still proved difficult. I’m chalking that up to the level of inexperience I have with the Rails framework and building an app from scratch. Everything that this project had us do was so new and complex that I’m both intimidated and excited for what the rest of the curriculum has in store. Throughout the instructions on the site, it kept reassuring the reader (me) not to worry about having no clue what’s happening because later in our learning this will all seem simple. Right now, I can’t imagine that, but the idea of that feeling is so empowering, and it is motivating me to keep going.</p>
+
+    <h4>Everything Else</h4>
+
+    <p>Aside from those two projects, there were an assortment of readings and videos to wrap up the course. Among them, I learned a bit about databases (SQL), and how relational databases would come in handy for my app. There were a few readings on the difference between the Cloud and Software as a Service. I skimmed the sections on Security and licenses, FTP basics, and some interesting posts on principles of good programming.</p>
+    <p>Looking ahead to this week: it looks like I will be taking a deeper dive into the Ruby programming language and possibly building some portfolio-level projects.</p>
+
+<h3>January 26-28 2017</h3>
+    <ul>
+        <li>Worked on and completed Ruby on Rails blog app project</li>
+        <li><a href="https://github.com/ks927/Projects/tree/master/learn_ruby">GitHub</a></li>
+        <li>Finished Additional Important Topics and Tying It All Together sections in Web Developement 101</li>
+    </ul>
+
+<h3>January 25 2017</h3>
+    <ul>
+        <li>Followed along this Rails <a href="http://guides.rubyonrails.org/getting_started.html">blog app walkthrough</a></li>
+    </ul>
+
+<h3>January 23-24 2017</h3>
+    <ul>
+        <li>TOP Blog Post #2</li>
+        <li>Updated Weekly Goals</li>
+        <li>Completed Ruby testing project</li>
+        <li>Completed Khan Academy tutorial on SQL and read about relational databases</li>
+        <li>Read <a href="http://railsapps.github.io/what-is-ruby-rails.html">this article</a> on Ruby on Rails</li>
+        <li>Read chapter 1 of <a href="https://www.railstutorial.org/book/beginning"> Hartl's Rails book</a> and created first rails app</li>
+    </ul>
+
+<h3><strong>The Odin Project-Blog Post 2</strong></h3>
+    <datetime>January 23 2017</datetime>
+    <br>
+    <h4>Week 2 - Etch-a-Sketch and Learning Ruby</h4>
+    <h4>Etch-a-Sketch</h4>
+
+    <p>I began week 2 applying my jQuery/JavaScript to a neat little etch-a-sketch project. It was the first time in my learning that I was able to combine code with markup, and the sense of achievement I felt when I got it to work was even more rewarding than the google page. The hardest part for me was actually generating the grid via code without any HTML or CSS. The trick was a 2-dimensional loop, followed by stylizing each div square with jQuery by dividing the height and width of the whole grid by the size of the div square that was passed into the loop (link to the code below). The other functions were pretty straightforward thanks to the magic of jQuery. My code can be found here <a href="https://github.com/ks927/Projects/tree/master/etch-a-sketch">GitHub</a>.</p>
+    <p>Like I mentioned last week, the merit in TOP is in its projects, and I find myself constantly checking to see how close I am to the next one. It’s what motivates me to spend hours everyday reading, watching videos, completing tutorials, or whatever it takes to get to the next project. Luckily, they're sprinkled in the curriculum in between every few sections.</p>
+
+    <h4>Learning Ruby</h4>
+
+    <p>Thus, I knew I had two more sections before the next one. So I set to work at learning my first new programming language since the summer - Ruby. This entailed completing the entire Ruby track on Codecademy, which took much longer than expected, and two days of following tutorials normally would have sapped whatever momentum I picked up from the etch-a-sketch project.</p>
+    <p>However, learning Ruby fueled a different fire for me. While it is a back end language unlike JavaScript, and much of the syntax is dissimilar, the general rules and ideas are essentially the same. There are strings, arithmetic operations, arrays, objects (called hashes), and functions (called methods). The loops are where I had and continue to have a little bit of trouble because of how different the syntax is and how many types there are. But overall, it seems to be a much more human-friendly and beginner-friendly programming language because of how it reads like English. So far, and I know it’s still early, I think I enjoy coding in Ruby more than I’ve enjoyed JavaScript. Let’s hope that continues.</p>
+
+    <p>Currently, I am working on the first Ruby project which is a combination of Ruby and the RSpec testing framework. Look for that in the week 3 post.</p><a>
+
+<h3>January 20-22 2017</h3>
+    <ul>
+        <li>Level 1 of RSpec tutorial on Code School</li>
+        <li><a href="https://www.youtube.com/watch?v=nBtO1UOK9Hs">TDD Tutorial</a></li>
+        <li>Began Ruby testing project</li>
+    </ul>
+
+
+<h3>January 19 2017</h3>
+    <ul>
+        <li>Read chapters 4 through 10 of Learn to Program and completed exercises</li>
+        <pre><code>class OrangeTree
+
+    def initialize
+        @age = 0
+        @orangeCount = 0
+        @height = 0
+        puts "An orange tree is planted."
+    end
+
+    def height
+        puts "Tree is " + @height.to_s + " feet tall."
+    end
+
+    def oneYearPasses
+        puts "One year passes"
+        @age = @age + 1
+        @height = @height + 10
+
+        if @age >= 3
+            @orangeCount = @orangeCount + 1
+        end
+    end
+
+    def countTheOranges
+       puts "The tree has " + @orangeCount.to_s + " oranges!"
+    end
+
+    def pickAnOrange
+        if @orangeCount > 0
+        @orangeCount = @orangeCount - 1
+        puts "What a delicious orange!"
+            else
+            puts "There are no oranges to pick this year"
+        end
+    end
+end
+
+tree = OrangeTree.new
+tree.oneYearPasses
+tree.oneYearPasses
+tree.oneYearPasses
+tree.oneYearPasses
+tree.height
+tree.countTheOranges
+tree.pickAnOrange
+</code></pre>
+    </ul>
+
+<h3>January 18 2017</h3>
+    <ul>
+        <li>Finished entire Ruby track on codecademy</li>
+        <li>Read first 3 chapters of Chris Pine's <a href="https://pine.fm/LearnToProgram/chap_03.html">Learn to Program</a></li>
+    </ul>
+
+<h3>January 17 2017</h3>
+    <ul>
+        <li>Completed etch-a-sketch project</li>
+        <li>Began <a href="https://www.codecademy.com/learn/ruby"> Ruby course</a> on codecademy</li>
+        <img src="etch-a-sketch.png" alt="etch-a-sketch" >
+    </ul>
+
+<h3><strong>The Odin Project-Blog Post 1</strong></h3>
+    <datetime>January 16 2017</datetime>
+    <br>
+    <h4>Week 1 - “Energy may be likened to the bending of a crossbow; decision, to the releasing of the trigger.”</h4>
+    <p>About five months ago I began teaching myself to code in hopes of a career as a front end a developer. When I started, I thought if I put in several hours everyday and followed a study guide with tutorials, I’d be on my way to employable in around half a year. By the time the holidays hit, however, reality set in. I had finished up my path, lost my way, and knew I needed something more. The fundamentals were like second nature, but I needed the next step. I extensively researched coding bootcamps. They seemed to be a 0-100 course of action. Not to mention tuition costs close to $20,000 and none in my area of the country. I was more on the hunt for something that would give me a taste of what a real developer does and help me <em>build a portfolio</em>. Considering where I was in my learning, and where I am geographically, I decided a bootcamp might not be the best option. I asked around on reddit and my thoughts were confirmed. One of those reddit threads led me to <a href="http://www.theodinproject.com/home">The Odin Project.</a></p>
+    <p>My only experience with TOP (which I will from here on out refer to it as) up to that point was at the beginning of my journey. I remember hearing about it, giving it a cursory glance, and thinking that it was beyond my level of comprehension. Returning to it after a few months of studying, however, seemed like perfect timing. It is a projects-based, bootcamp style curriculum created by alumni of App Academy. And the best part is it’s free! So with new renewed vigor, I began a new journey, and will be chronicling it weekly here.</p>
+    <h4>Conquering My Fear of the Command Line</h4>
+    <p>I love that TOP begins with a course on the command line, because through all of my studying, it is the one thing I knew was absolutely essential but was always afraid of tackling. No other study guide I’ve followed has provided adequate command line material until this one. The first section teaches you how to navigate your computer’s file system, create directories and files, make copies of and remove those files. This leads right into the next section which is on Git and GitHub. Now that I am finally competent using the command line and Git, I’m starting to feel like an actual coder.</p>
+    <h4>Devtools and the Front End</h4>
+	<p>The subcategory following Git is the Front End. These are tools and languages that I am familiar with and have been studying since the summer, so while I was able to traverse this section rather quickly, the real value was in the projects. The first project of TOP is to redo the Google homepage using HTML and CSS. Simple enough. But the fact that it is not a tutorial and no one is holding your hand along the way is what makes it special. You are forced to put what you know into practice and the frustration of creating a webpage pays off in the end with a huge confidence boost. <a href="https://github.com/ks927/Projects/tree/master/google-homepage">GitHub</a></p>
+    <p>The second project is to build an etch-a-sketch tool using JavaScript and jQuery, which I will be getting to at the beginning of week 2.</p>
+
+<h3>January 14 2017</h3>
+    <ul>
+        <li>Completed <a href="http://try.jquery.com/levels/1/challenges/1">Code School's "Try jQuery" course</a></li>
+        <li>completed Codecademy's <a href="https://www.codecademy.com/learn/jquery">jQuery</a> course</li>
+    </ul>
+
+<h3>January 13 2017</h3>
+    <ul>
+        <li>Solved <a href="https://projecteuler.net/problem=1">Multiples of 3 and 5</a> problem from Project Euler</li>
+        <code><pre>function sum(){
+        var result = 0;
+        for(var i=0;i<1000;i++){
+            if(i%5===0 && i%3===0){
+            console.log(i += result);
+                }
+                }
+            }</pre></code>
+        <li>Codecademy's first 3 jQuery sections</li>
+        <li>Code School's first 4 "Try jQuery" sections</li>
+    </ul>
+
+<h3>January 12 2017</h3>
+    <ul>
+        <li><strong>The Odin Project</strong> Developer tools sections<ul>
+            <li>2 Code School courses</li>
+        </ul>Began and nearly finished HTML/css project - google homepage copy</li>
+        <li>Learned how to git -f push origin</li>
+        <img src="google.png" alt="google-homempage">
+    </ul>
+
+<h3>Januray 11 2017</h3>
+    <ul>
+        <li><strong>The Odin Project</strong></li>
+        <ul>
+            <li><a href="https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control">Version Control</a> basics</li>
+            <li><a href="https://try.github.io/levels/1/challenges/1">Code School's</a> Try Git course</li>
+            <li><a href="https://www.codecademy.com/learn/learn-git">Codecademy's</a> Learn Git course</li>
+            <li>Completed Git Project</li>
+            <li>Completed HTML/CSS Android tutorial Project and used git to push it to GitHub</li>
+        </ul>
+    </ul>
 
 <h3>January 10 2017</h3>
     <ul>
@@ -147,7 +351,7 @@ console.log("listening to localhost 8000");</pre></code>
     </ul>
 
     <footer>
-    <a href="blog-dec.html" class="next">December posts>></a>
+    <a href="blog-feb.html" class="last">&lt;&lt;February Posts</a><a href="blog-dec.html" class="next">December posts>></a>
     </footer>
     </main>
     </body>

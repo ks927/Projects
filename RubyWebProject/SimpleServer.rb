@@ -6,7 +6,7 @@ loop { #Servers run forever
   client = server.accept  # Wait for a client to connect
   header = ""
   while line = client.gets # read lines from client
-    header += line 
+    header += line
     break if header =~ /\r\n\r\n$/ # breaks at end of initial request line
   end
     puts "Request: #{header}"
@@ -26,9 +26,9 @@ loop { #Servers run forever
                          "Connection: close\r\n"
             client.print body # print the body
         end
-            
+
     elsif method[0] == "GET" # 1st element = GET
-        path = method[1].to_s 
+        path = method[1].to_s
         if File.exist?(path) # if 2nd elem = our file
             file = File.read(path) # open that file
             client.print "HTTP/1.0 200 OK\r\n" +

@@ -1,9 +1,9 @@
 require 'socket'
 require 'json'
- 
+
 host = 'localhost'     # The web server
 port = 8000            # Default HTTP port
-path = "index.html"   # The file we want 
+path = "index.html"   # The file we want
 post_path = "thanks.html"
 
 
@@ -16,12 +16,12 @@ if choice == "GET"
     socket = TCPSocket.open(host,port)  # Connect to server
     socket.print(request)               # Send request
     response = socket.read              # Read complete response
-    
+
     # Split response at first blank line into headers and body
     headers,body = response.split("\r\n\r\n", 2)
     print headers
     print body                          # And display it
-    
+
 elsif choice == "POST"
     puts "What would you like your Viking name to be?"
     name = gets.chomp
@@ -48,3 +48,10 @@ end
 ### AND GETS OUTPUT TO THE TERMINAL ###
 
 
+<<<<<<< HEAD
+# Split response at first blank line into headers and body
+headers,body = response.split('\r\n\r\n', 2)
+puts body # Display it
+end
+=======
+>>>>>>> origin/master

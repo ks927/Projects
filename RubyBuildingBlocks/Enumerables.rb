@@ -31,12 +31,11 @@ module Enumerable
     end
 
     def my_all?
+        check = true
         self.my_each do |i|
-            if yield(i) == false
-                return false
-            end
+            check = false unless yield i
         end
-        true
+        check
     end
 
     def my_any?
@@ -62,14 +61,9 @@ module Enumerable
     def my_count
         count = 0
         self.my_each do |i|
-            if block_given?
-                if yield(i) == true
+            if yield i
                 count += 1
-                end
-            else
-            count += 1
             end
-        end
         count
     end
 
@@ -84,7 +78,6 @@ module Enumerable
     end
 
 
-    end
 
 
 
