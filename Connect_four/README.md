@@ -10,6 +10,8 @@ To run the game, you must first create an object of the Game class. Upon initial
 
 This continues until four R or Y pieces are placed in a row, which the check_for_winner method accounts for. The game_over variable is set to true, the play loop ends, and a message is sent to the screen congratulating the winner.
 
+![screenshot](https://cloud.githubusercontent.com/assets/23216543/24463138/f6261cd8-1473-11e7-98d2-07dfebd3efe0.png)
+
 
 ### Acknowledgments
 
