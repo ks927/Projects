@@ -15,20 +15,12 @@ describe Enumerable do
            expect(array.select{ |item| item < 3  }).to eql([1,2])
        end
     end
-<<<<<<< HEAD
-
-    describe "my_count" do
-=======
 
      describe "my_count" do
->>>>>>> origin/master
        it "returns size of array" do
           expect(array.my_count).to eql(4)
        end
     end
-<<<<<<< HEAD
-
-=======
 
     describe "my_all" do
         context "given an array of numbers" do
@@ -38,5 +30,4 @@ describe Enumerable do
         end
     end
 
->>>>>>> origin/master
 end
