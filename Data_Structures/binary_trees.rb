@@ -73,6 +73,6 @@ class BinarySearch
 end
 
 tree = BinarySearch.new
-tree.build_tree[1, 5, 4, 7, 2, 365]
+tree.build_tree([1, 5, 4, 7, 2, 365])
 tree.dfs_rec(7)
 
